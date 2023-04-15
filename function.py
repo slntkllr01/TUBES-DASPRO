@@ -7,11 +7,11 @@ def length(arr):
 
 
 # Pengganti Append
-def append2(arr, x):
+def append(arr, x):
   arr += [x]
 
 # Pengganti Append versi 2
-def append(arr, x):
+def append2(arr, x):
   i = 0
   while True :
     if arr[i] == []:

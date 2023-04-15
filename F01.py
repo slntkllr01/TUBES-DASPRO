@@ -1,6 +1,7 @@
 import csvfunction as cfx
 import function as fx
 from database import *
+import time
 
 # Membaca file CSV
 arr, nuser = tuple(cfx.readcsv('user.csv', 3))
@@ -12,11 +13,12 @@ for i in range (nuser):
 def login() :
   
   global username, password, role
-  
+
   # Meminta input username dan password
-  print("Mohon input username ")
-  cekusername = input("Username: ")
-  cekpassword = input("Password: ")
+  print("Masukkan Username!")
+  cekusername = input()
+  print("Masukkan Password!")
+  cekpassword = input()
 
   # inisialisasi
   i = 0
@@ -42,3 +44,4 @@ def login() :
     else :
       i += 1
 
+login()
