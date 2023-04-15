@@ -1,3 +1,8 @@
+from function import*
+from csvfunction import *
+
+user = readcsv('user.csv', 3)
+
 def summonjin():
     print("Jenis jin yang dapat dipanggil:")
     print(" (1) Pengumpul - Bertugas mengumpulkan bahan bangunan")
@@ -5,52 +10,61 @@ def summonjin():
 
     jenisjin = int(input("Masukkan nomor jenis jin yang dipanggil: "))
 
+    while jenisjin != 1 and jenisjin != 2:
+        print("Tidak ada jenis jin bernomor", "'" + str(jenisjin) + "'")
+        print()
+        jenisjin = int(input("Masukkan nomor jenis jin yang dipanggil: "))
+        
     if jenisjin == 1:
         print('Memilih jin "Pengumpul".')
 
         username = input("Masukan username jin: ")
         password = input("Masukkan password jin: ")
 
-        for i in range (row):
-            if username != user[i][0]:
-                if 5 <= len(password) <= 25 :
-                    if user[i] != None:
-                        i += 1
-                    else:
-                        user[i] = [username, password, "pengumpul"]   
-                        print("Mengumpulkan sesajen...")
-                        print("Menyerahkan sesajen...")
-                        print("Membacakan mantra...")
-                        print()
-                        print("Jin", username, "berhasil dipanggil!")
-                else:
+        i = 0    
+        while i <= (array_length(user)):
+            if username != user[i][0] and user[i][0] != None:
+                i += 1
+                while len(password) < 5 or len(password) > 25 :
                     print("Password panjangnya harus 5-25 karakter!")
+                    password = input("Masukkan password jin: ")
+                if 5 <= len(password) <= 25 :
+                    user[i] = [username, password, "pengumpul"]   
+                    print("Mengumpulkan sesajen...")
+                    print("Menyerahkan sesajen...")
+                    print("Membacakan mantra...")
+                    print()
+                    print("Jin", username, "berhasil dipanggil!")
+                    break       
             else:
-                print("Username sudah digunakan.")    
+                print("Username sudah digunakan.")
+                break
+                    
     elif jenisjin == 2:
         print('Memilih jin "Pembangun". ')
 
         username = input("Masukan username jin: ")
         password = input("Masukkan password jin: ")
 
-        for i in range (row):
-            if username != user[i][0]:
-                if 5 <= len(password) <= 25 :
-                    if user[i] != None:
-                        i += 1
-                    else:
-                        user[i] = [username, password, "pembangun"]   
-                        print("Mengumpulkan sesajen...")
-                        print("Menyerahkan sesajen...")
-                        print("Membacakan mantra...")
-                        print()
-                        print("Jin", username, "berhasil dipanggil!")
-                else:
+        i = 0    
+        while i <= (array_length(user)):
+            if username != user[i][0] and user[i][0] != None:
+                i += 1
+                while len(password) < 5 or len(password) > 25 :
                     print("Password panjangnya harus 5-25 karakter!")
+                    password = input("Masukkan password jin: ")
+                if 5 <= len(password) <= 25 :
+                    user[i] = [username, password, "pembangun"]   
+                    print("Mengumpulkan sesajen...")
+                    print("Menyerahkan sesajen...")
+                    print("Membacakan mantra...")
+                    print()
+                    print("Jin", username, "berhasil dipanggil!")
+                    break       
             else:
                 print("Username sudah digunakan.")
-    else:
-        print("Tidak ada jenis jin bernomor", "'" + str(jenisjin) + "'")
-
+                break
+        
+summonjin()
 
     
