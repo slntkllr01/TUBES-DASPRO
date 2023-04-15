@@ -11,8 +11,6 @@ def summonjin():
         username = input("Masukan username jin: ")
         password = input("Masukkan password jin: ")
 
-        validasi = False
-
         for i in range (row):
             if username != user[i][0]:
                 if 5 <= len(password) <= 25 :
@@ -35,8 +33,6 @@ def summonjin():
         username = input("Masukan username jin: ")
         password = input("Masukkan password jin: ")
 
-        validasi = False
-
         for i in range (row):
             if username != user[i][0]:
                 if 5 <= len(password) <= 25 :
@@ -55,6 +51,6 @@ def summonjin():
                 print("Username sudah digunakan.")
     else:
         print("Tidak ada jenis jin bernomor", "'" + str(jenisjin) + "'")
-        
+
 
     
