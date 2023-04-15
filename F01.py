@@ -4,11 +4,7 @@ from database import *
 import time
 
 # Membaca file CSV
-arr, nuser = tuple(cfx.readcsv('user.csv', 3))
-
-# Masukkin data Array ke User
-for i in range (nuser):
-  fx.append2(user, arr[i])
+arr = cfx.readcsv('user.csv', 3)
  
 def login() :
   
@@ -16,32 +12,31 @@ def login() :
 
   # Meminta input username dan password
   print("Masukkan Username!")
-  cekusername = input()
+  username_checker = input()
   print("Masukkan Password!")
-  cekpassword = input()
+  password_checker = input()
 
   # inisialisasi
   i = 0
   loginstatus = False
-  global nuser, user
 
-  while i < nuser : 
-    if user[i][0] == cekusername :
-      if user[i][1] == cekpassword :
+  while i < fx.array_length(arr) : 
+    if arr[i][0] == username_checker :
+      if arr[i][1] == password_checker :
         loginstatus = True
-        username = cekusername
-        password = cekpassword
-        role = user[i][2]
+        username = username_checker
+        password = password_checker
+        role = arr[i][2]
         print("selamat datang", username, "!")
         print("Masukkan command 'help' untuk daftar command yang dapat kamu panggil.")
         break
       else:
         print("Alemong password salah WKWKWKWK")
         break
-    elif i == (nuser - 1) :
+    elif i == (fx.array_length(arr) - 1) :
       print("Username tidak terdaftar!")
       break
     else :
-      i += 1
+      i += 1   
 
-login()
+print(arr)

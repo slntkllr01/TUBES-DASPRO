@@ -6,11 +6,13 @@ def readcsv(filename, col):
     data = file.read()
 
   # simpan CSV di array
-  arr, row = fx.splitcsv(data, "\n")
+  arr = fx.split(data, "\n")
 
   # menghilangkan ";" pada Array
   i = 0
   while i < col:
     arr[i] = fx.split(arr[i], ";")
     i += 1
-  return (arr, row)
+  return arr
+
+
