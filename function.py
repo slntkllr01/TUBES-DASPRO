@@ -97,7 +97,7 @@ def randomseed(x):
 
     return seed
     
-def SearchRandomNumber(min: int ,max: int ,x: int) -> int : 
+def RandomNumber(min: int ,max: int ,x: int) -> int : 
     seed = randomseed(x)
     a = 1662533
     c = 1283463648

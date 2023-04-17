@@ -1,7 +1,7 @@
 # Inisialisasi Array Database
 user = []
 candi = []
-bangunan = []
+bahan_bangunan = []
 
 # Database pengguna
 username = ''
