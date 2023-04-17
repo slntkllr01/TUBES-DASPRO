@@ -5,4 +5,3 @@ def summaterials() :
     air = random.randrange(0,5)
     output = ("Jin menemukan", pasir, "pasir",batu, "batu",air,"air")
     return output
-print (summaterials())
