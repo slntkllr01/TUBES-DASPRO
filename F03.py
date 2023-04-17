@@ -29,7 +29,7 @@ def summonjin():
                     print("Password panjangnya harus 5-25 karakter!")
                     password = input("Masukkan password jin: ")
                 if 5 <= len(password) <= 25 :
-                    user[i] = [username, password, "pengumpul"]   
+                    user[i] = [username, password, "Pengumpul"]   
                     print("Mengumpulkan sesajen...")
                     print("Menyerahkan sesajen...")
                     print("Membacakan mantra...")
@@ -54,7 +54,7 @@ def summonjin():
                     print("Password panjangnya harus 5-25 karakter!")
                     password = input("Masukkan password jin: ")
                 if 5 <= len(password) <= 25 :
-                    user[i] = [username, password, "pembangun"]   
+                    user[i] = [username, password, "Pembangun"]   
                     print("Mengumpulkan sesajen...")
                     print("Menyerahkan sesajen...")
                     print("Membacakan mantra...")

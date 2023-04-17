@@ -6,6 +6,8 @@ import time
 # Membaca file CSV
 arr = cfx.readcsv('user.csv', 3)
  
+print(arr) 
+
 def login() :
   
   global username, password, role
@@ -39,4 +41,4 @@ def login() :
     else :
       i += 1   
 
-print(arr)
+
