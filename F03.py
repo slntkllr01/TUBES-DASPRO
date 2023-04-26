@@ -1,7 +1,6 @@
-from function import*
-from csvfunction import *
+from function import *
 
-user = readcsv('user.csv', 3)
+user = [['username','password','role'], ['Bondowoso','cintaroro','bandung_bondowoso'],['Roro','gasukabondo','roro_jonggrang']]
 
 def summonjin():
     print("Jenis jin yang dapat dipanggil:")
@@ -64,7 +63,5 @@ def summonjin():
             else:
                 print("Username sudah digunakan.")
                 break
-        
-summonjin()
 
     

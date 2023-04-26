@@ -1,5 +1,6 @@
+from database import *
+
 def help():
-  global loginstatus, role
   if loginstatus == False:
      print(f"""
 =========== HELP ===========

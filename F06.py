@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import random
 def summaterials() :
     pasir = random.randrange(0,5)
@@ -5,3 +6,5 @@ def summaterials() :
     air = random.randrange(0,5)
     output = ("Jin menemukan", pasir, "pasir",batu, "batu",air,"air")
     return output
+=======
+>>>>>>> Stashed changes

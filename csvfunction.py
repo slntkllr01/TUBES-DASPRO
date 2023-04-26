@@ -1,31 +1,40 @@
-import function as fx
-
-# # Baca File CSV
-# def readcsv(filename, col):
-#   with open(filename, 'r') as file:
-#     data = file.read()
-
-#   # simpan CSV di array
-#   arr = fx.split(data, "\n")
-
-#   # menghilangkan ";" pada Array
-#   i = 0
-#   while i < col:
-#     arr[i] = fx.split(arr[i], ";")
-    
-#     i += 1
-#   return arr
+from function import *
 
 # Baca File CSV
-def readcsv(filename, col):
-  with open(filename, 'r') as file:
+def csv_to_array(file_name):
+  with open(file_name, 'r') as file:
     data = file.read()
 
   # simpan CSV di array
-  arr = fx.splitcsv(data, "\n")
+  arr = my_split(data, '\n')
 
   # menghilangkan ";" pada Array
-  for i in range (col):
-    arr[i] = fx.split(arr[i], ";")
+  i = 0
+  while i < array_length(arr):
+    arr[i] = my_split(arr[i], ";")
+    i += 1
+  return arr    
+
+# Tulis File CSV
+def array_to_csv(arr):
+
+    csv_string = ""
+
+    row_length = array_length(arr)
+    col_length = array_length(arr[0])
     
-  return arr
+    i = 0
+    while i < row_length:
+        j = 0
+        while j < col_length:
+            csv_string += str(arr[i][j])
+            if j != col_length-1:
+                csv_string += ";"
+            j += 1
+        if i != row_length-1:
+            csv_string += "\n"
+        i += 1
+
+    if row_length == 0:
+        return str
+  

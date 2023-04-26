@@ -2,12 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-# Membaca CSV Candi dan User
-user_arr = readcsv("user.csv", 3)
-candi_arr = readcsv("candi.csv", 5)
-
-role = 'bandung_bondowoso'
-
 def hapusjin():
     global role
     if role != "bandung_bondowoso":
@@ -16,8 +10,8 @@ def hapusjin():
     else:
         jin_username = input("Masukkan username jin : ")
         i = 0
-        while i <= (array_length(user_arr)):
-            if jin_username == user_arr[i][0]:
+        while i <= (array_length(user)):
+            if jin_username == user[i][0]:
                 choice = print("Apakah anda yakin ingin menghapus jin dengan username Jin1 (Y/N)? ")
                 if choice == 'Y' or choice == 'y':
                     print()

@@ -10,72 +10,44 @@ def array_length(arr):
         temp_arr = [0 for i in range(count)]
         for i in range(count):
             temp_arr[i] = arr[i]
-    return count
+    return count  
 
-# # Pengganti Append
-# def append(arr, x):
-#   arr += [x]
+def arr_append(arr, x):
+    temp_arr = ['' for i in range(array_length(arr)+1)]
+    for i in range (array_length(arr)):
+        temp_arr[i] = arr[i]
+    temp_arr[array_length(arr)] = x
+    return temp_arr
 
-# Pengganti Append
-def append(arr, x): 
-    arr2 = [0 for i in range(array_length(arr) + 1)]
-    for i in range(array_length(arr2)): 
-        if i != array_length(arr2) - 1:
-            arr2[i] = arr[i]
-        else: 
-            arr2[i] = x
-    return arr2
+def str_append(str, x):
+    temp_arr = ['' for i in range(len(str)+1)]
+    for i in range(len(str)):
+        temp_arr[i] = str[i]
+    temp_arr[len(str)] = x
 
-# Mengisi array mulai dari indeks paling awal
-# def append(arr, x):
-#   i = 0
-#   while True :
-#     if arr[i] == []:
-#       arr[i] = x
-#       break
-#     i += 1        
+    new_str = ''
+    for i in range(len(str)+1):
+        new_str += temp_arr[i]
+    return new_str
 
-# Pengganti Split
-# def split(str, delimit):
-  
-#   word = []
-#   word2 = ""
-  
-#   i = 0
-#   while i < len(str):
-#     if str[i] == delimit:
-#       append(word, word2)
-#       word2 = ""
-#     else:
-#       word2 += str[i]      
-#     i += 1
-#   append(word, word2)
-#   return word
+def my_split(string , delimit):
 
-# Split untuk CSV
-def splitcsv(str, delimit):
-  
-  word = []
-  word2 = ""
+    temp_arr = []
+    word = ''
 
-  i = 0
-  while i < len(str):
-    if str[i] == delimit :
-      append(word, word2)
-      word2 = ""
-    else:
-      word2 += str[i]
-    i += 1
-  append(word, word2)
-  return word
-
-word = 'username;password;role\nBondowoso;cintaroro;bandung_bondowoso\nRoro;gasukabondo;roro_jonggrang'
-
-print(splitcsv(word, '\n'))
-print(append([],'haha'))
+    i = 0
+    while i < len(string):
+        if(string[i] == delimit):
+            temp_arr = arr_append(temp_arr, word)
+            word = ''
+        else:
+            word = str_append(word, string[i])
+        i += 1
+    arr = arr_append(temp_arr, word)
+    return arr
 
 # Implementasi untuk melakukan sortir data
-def sort(arr):
+def sort(arr: list) -> list :
   for i in range(array_length(arr)):
     swapped = False
     for j in range(0, array_length(arr)-i-1):
