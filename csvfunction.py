@@ -15,6 +15,7 @@ def csv_to_array(file_name):
     i += 1
   return arr    
 
+
 # Tulis File CSV
 def array_to_csv(arr):
 

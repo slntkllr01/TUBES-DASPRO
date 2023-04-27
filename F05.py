@@ -1,20 +1,35 @@
+from csvfunction import *
+from function import *
+from database import *
+
+user_csv = csv_to_array('user.csv')
+user = add_to_database(user, user_csv)
+
 def ubahjin():
-    username = input('Masukkan username jin : ')
-    for i in range(array_length(user)):
-        if username == user[i][0]:
-            if role == 'Pengumpul':
-                konfirmasi = print(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ")
-            else: # Role : Pengumpul
-                konfirmasi = print(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pengumpul” (Y/N)? ")
+    username_jin = input('Masukkan username jin : ')
+    found = False
+    for i in range(array_length(user) - array_kosong_count(user)):
+        if username_jin == user[i][0]:
+            if user[i][2] == 'Pengumpul':
+                konfirmasi = input(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ")
+            else: # Role : Pembangun
+                konfirmasi = input(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pengumpul” (Y/N)? ")
 
             if konfirmasi == 'y' or konfirmasi == 'Y':
+                user[i][2] = 'Pembangun' if user[i][2] == 'Pengumpul' else 'Pengumpul'
+                print(user[i])
                 print("\nJin telah berhasil diubah.")
+                found = True
                 break
             else:
-                break #ini gw masi bingung antara dia minta input lagi atau lgsg keluar
-        else:
-            print("\nTidak ada jin dengan username tersebut.")
-            break
+                found = True # user found, but not updated
+                break
+    if not found:
+        print("\nTidak ada jin dengan username tersebut.")
+
+ubahjin()        
+
+
 
 
 

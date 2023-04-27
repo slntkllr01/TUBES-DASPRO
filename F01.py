@@ -1,33 +1,48 @@
-import csvfunction as cfx
-import function as fx
-import database
+from csvfunction import *
+from function import *
+from database import *
 import time
 
 # Membaca file CSV
-arr = cfx.csv_to_array('user.csv')
+arr = csv_to_array('user.csv')
 
 def login() :
 
+  # Program Login ini memiliki jumlah attempt maksimal sebanyak 3 kali
+  max_attempts = 3
+  remaining_attempts = max_attempts
+
   # Meminta input username dan password
-  username_input = input("Masukkan Username: ")
-  password_input = input("Masukkan Password: ")
+  while remaining_attempts > 0:
+    username = input("Masukkan Username: ")
+    password = input("Masukkan Password: ")
 
-  # inisialisasi
-  i = 0
+    for i in range(array_length(arr)):
+      if arr[i][0] == username:
+        if arr[i][1] == password:
+          role = arr[i][2]
+          loginstatus = True
+          print("\nSelamat datang,", username, "!")
+          print("Masukkan command 'help' untuk daftar command yang dapat kamu panggil.\n")
+          return loginstatus, username, password, role
+        else:
+            remaining_attempts -= 1
+            if remaining_attempts > 0:
+                print("\nPassword salah! Mohon input password yang benar!")
+                print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!\n")
+            break
+    else:
+      remaining_attempts -= 1
+      if remaining_attempts > 0:
+        print("\nMohon maaf, Username tidak terdaftar!")
+        print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!\n")
+  print("\nMohon Maaf, Anda telah salah memasukkan username atau password sebanyak 3x.")
+  print("Silakan coba lagi dalam 30 detik.")
+  time.sleep(30)
+  remaining_attempts = max_attempts
 
-  while i < fx.array_length(arr) : 
-    if arr[i][0] == username_input :
-      if arr[i][1] == password_input :
-        loginstatus = True; username = username_input; password = password_input
-        role = arr[i][2]
-        print("\nselamat datang", username, "!")
-        print("Masukkan command 'help' untuk daftar command yang dapat kamu panggil.\n")
-        return loginstatus, username, password, role
-      else:
-        print("\nPassword salah! mohon input password yang benar!")
-        return login()
-    elif i == (fx.array_length(arr) - 1) :
-      print("\nMohon Maaf, Username tidak terdaftar!")
-      return login()
-    else :
-      i += 1   
+  return False, None, None, None
+
+login()
+
+
