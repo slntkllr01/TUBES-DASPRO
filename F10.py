@@ -42,3 +42,6 @@ def laporancandi() :
         print(f"> Total Air yang digunakan: {jumlah_air}")
         print("> ID Candi Termahal:" + str(id_termahal) + "Rp{:,.2f}".format(id_termahal))
         print("> ID Candi Termurah:" + str(id_termurah) + "Rp{:,.2f}".format(id_termurah))
+
+    else : 
+        print("Laporan ini hanya bisa diakses oleh akun Bondowoso")
