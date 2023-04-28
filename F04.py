@@ -119,4 +119,4 @@ def cari_index(parameter, array):
             return i
         
 
-hapusjin()
+print(cari_index())

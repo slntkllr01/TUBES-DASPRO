@@ -71,6 +71,4 @@ def help():
 3. save
    Untuk menyimpan data permainan
 4. exit
-   Untuk keluar dari permainan""")
-          
-# Note : Pengumpul dan Pembangun tidak bisa exit          
+   Untuk keluar dari permainan""")         
