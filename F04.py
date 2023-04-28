@@ -20,34 +20,47 @@ def hapusjin():
     else:
         jin_username = input("Masukkan username jin : ")
         i = 0
+        jin_found = False # menandai apakah jin dengan username tersebut telah ditemukan
         while i < (array_length(user_array) - array_kosong_count(user_array)):
             if jin_username == user_array[i][0]:
+                jin_found = True
+                if user_array[i][2] != "Pembangun" and user_array[i][2] != "Pengumpul":
+                    print("Bukan Jin! Tidak bisa dihapus!")
+                    return
                 choice = input("Apakah anda yakin ingin menghapus jin dengan username " + str(jin_username) + " (Y/N)? ")
                 if choice == 'Y' or choice == 'y':
+                    # hapus candi jika jin pembangun
+                    if user_array[i][2] == "Pembangun":
+                        hapus_candi_by_username(jin_username)
                     # Simpan array yang dihapus ke dalam stack sebelum dihapus
                     stack = arr_append(stack, ("hapus", (user_array[i], candi_array[i])))
                     print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
-                    print(stack)
-                    hapuscandi(i)
+                    # Simpan array yang digeser ke dalam stack sebelum digeser
+                    user_array[i] = []
+                    stack = arr_append(stack, ("geser", (user_array, candi_array)))
+                    user_array = geser_array(user_array, i)
                     break
                 else: # Pilih N/n
                     break
             else:
                 i += 1
-        if i == (array_length(user_array) - array_kosong_count(user_array)):
+        if not jin_found: # jika jin dengan username tersebut tidak ditemukan
             print("Maaf, Tidak ada jin dengan username tersebut.")
 
-def hapuscandi(jin_indeks):
+def hapus_candi_by_username(username):
     global user_array, candi_array, stack
-    if user_array[jin_indeks][2] == "Pembangun":
-        for i in range(array_length(candi_array) - array_kosong_count(candi_array)):
-            if candi_array[i][1] == user_array[jin_indeks][0]:
-                # Simpan array yang dihapus ke dalam stack sebelum dihapus
-                stack = arr_append(stack, ("hapus", (candi_array[i])))
-                candi_array[i] = []
-        # Simpan array yang digeser ke dalam stack sebelum digeser
-        stack = arr_append(stack, ("geser", (user_array, candi_array)))
-        user_array = geser_array(user_array, jin_indeks)
+    
+    # Loop melalui seluruh candi_array dan hapus semua candi dengan username yang sesuai
+    i = 0
+    while i < (array_length(candi_array) - array_kosong_count(candi_array)):
+        if candi_array[i] and candi_array[i][1] == username:
+            # Simpan array yang dihapus ke dalam stack sebelum dihapus
+            stack = arr_append(stack, ("hapus_candi", (candi_array[i])))
+            candi_array[i] = []
+            candi_array = geser_array(candi_array, i)
+        else:
+            i += 1
+    return candi_array, stack
 
 def geser_array(arr, index_jin):
     # menghapus elemen yang dihapus dengan menggeser seluruh elemen setelahnya ke kiri
@@ -76,7 +89,8 @@ def undo():
         print("Tidak ada perubahan yang dapat di-undo.")
         return
     else:
-        perubahan_terakhir = stack.pop()
+        stack_last_idx = (array_length(stack)-1)
+        perubahan_terakhir = delete_elmt(stack, stack_last_idx)
 
     # undo perubahan
     if perubahan_terakhir[0] == 'hapus_jin':
@@ -99,18 +113,19 @@ def undo():
         candi_array = geser_array(candi_array, index_candi)
         print("Perubahan pada penghapusan candi telah di-undo.")
 
-def hapus_candi_by_username(username):
-    global candi_array
-    i = 0
-    while i < len(candi_array):
-        if candi_array[i][1] == username:
-            candi_array = delete_elmt(candi_array, i)
-            i -= 1
-        i += 1    
+# def hapus_candi_by_username(username):
+#     global candi_array
+#     i = 0
+#     while i < len(candi_array):
+#         if candi_array[i][1] == username:
+#             candi_array = delete_elmt(candi_array, i)
+#             i -= 1
+#         i += 1    
 
 def cari_index(parameter, array):
     for i in range(array_length(array)):
         if array[i][0] == parameter:
             return i
         
-undo()    
+
+hapusjin()
