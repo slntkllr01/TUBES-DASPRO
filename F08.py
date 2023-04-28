@@ -1,48 +1,85 @@
-from function import RandomNumber
+from csvfunction import *
+from function import *
+from database import *
+
+def role_count(arr : list, role : str) -> int :
+    count = 0
+    for i in range(len(arr) - array_kosong_count(arr)):
+        if arr[i][2] == role:
+            count += 1
+    return count
+
+role = 'bandung_bondowoso'
 
 def batchkumpul():
-    # Inisialisasi Bahan Bangunan
-    pasir_total = 0
-    batu_total = 0
-    air_total = 0
+    global user, role
 
-    pengumpul_count = 0
+    # Melakukan Validasi role
+    if role != 'bandung_bondowoso':
+        print("Ga punya akses!")
+        return
+    
+    # Inisialisasi Jumlah Pasir, Batu, Air yang terkumpul untuk satu jin
+    pasir = RandomNumber(0, 5, 1344567543)
+    batu = RandomNumber(0, 5, 4765432345)
+    air = RandomNumber(0, 5, 8765432344)
 
-    i = 0    
-    while i < array_length(user):
-        if user[i][2] == 'pengumpul':
-            founded_pasir = RandomNumber(0,5,345647); founded_batu = RandomNumber(0,5,295847); founded_air = RandomNumber(0,5,375643)
-            pasir_total += founded_pasir; batu_total += founded_batu; air_total += founded_air
-            pengumpul_count += 1                
-        i += 1
+    # Inisialisasi Total Jumlah Pasir, Batu, Air yang terkumpul
+    total_pasir = 0
+    total_batu = 0
+    total_air = 0
 
-    if i == (array_length(user) - 3): # dikurang header, bandung_bondowoso, dan roro_jonggrang
-        print('Alemong Kumpul gagal. Summon dulu anjir')
-    else:
-        print("Mengerahkan", counter ,"jin untuk mengumpulkan bahan.")
-        print("Selamat, Jin menemukan total", pasir, "pasir,", batu, "batu, dan", air, "air.")
-    return main_bondowoso()    
+    pengumpul_count = role_count(user_csv, "Pengumpul")
+
+    for i in range (pengumpul_count):
+        total_pasir += pasir; total_batu += batu; total_air += air
+
+    # Memasukkan ke Database
+    bb[1][2] = int(bb[1][2]); bb[1][2] += total_pasir
+    bb[2][2] = int(bb[2][2]); bb[2][2] += total_batu
+    bb[3][2] = int(bb[3][2]); bb[3][2] += total_air
+
+    print("Mengerahkan", pengumpul_count, "jin untuk mengumpulkan bahan.")
+    print("Jin menemukan total", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")   
 
 def batchbangun():
-    # Inisialisasi Bahan Bangunan
-    pasir_total = 0
-    batu_total = 0
-    air_total = 0
+    # Melakukan Validasi role
+    if role != 'bandung_bondowoso':
+        print("Ga punya akses!")
+        return
+    
+    pengumpul_count = role_count(user_csv, "Pembangun")
 
-    pengumpul_count = 0
+    if pengumpul_count == 0:
+        print("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
+        return
+    else:    
+        # Inisialisasi Jumlah Pasir, Batu, Air yang dibutuhkan untuk satu jin
+        pasir = RandomNumber(0, 5, 234567889)
+        batu = RandomNumber(0, 5, 678934569)
+        air = RandomNumber(0, 5, 345678984)
 
-    i = 0
-    while i < array_length(user):
-        if user[i][2] == 'pembangun':
-            needed_pasir = RandomNumber(0,5,345647); needed_batu = RandomNumber(0,5,295847); needed_air = RandomNumber(0,5,375643)
-            pasir_total += needed_pasir ; batu_total += needed_batu ; air_total += needed_air
-            pengumpul_count += 1
-    if i == (array_length(user) - 3):
-        print("Bangun gagal. Anda tidak punya jin pembangun. Silakan summon terlebih dahulu.")
-    else:
-        print()
-        print()
-    return main_bondowoso()        
+        # Inisialisasi Total Jumlah Pasir, Batu, Air yang dibutuhkan
+        total_pasir = 0
+        total_batu = 0
+        total_air = 0
+
+        for i in range (pengumpul_count):
+            total_pasir += pasir; total_batu += batu; total_air += air
+
+
+        if total_pasir <= int(bb[1][2]) and total_batu <= int(bb[2][2]) and total_air <= int(bb[3][2]):
+            print("Mengerahkan", pengumpul_count, "jin untuk membangun candi dengan total bahan", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")
+            print("Jin berhasil membangun total", pengumpul_count, "candi.")
+            bb[1][2] = int(bb[1][2]); bb[1][2] -= total_pasir
+            bb[2][2] = int(bb[2][2]); bb[2][2] -= total_batu
+            bb[3][2] = int(bb[3][2]); bb[3][2] -= total_air
+            print(bb)
+        else:
+            pasir_needed = abs(int(bb[1][2]) - total_pasir)
+            batu_needed = abs(int(bb[2][2]) - total_batu)
+            air_needed = abs(int(bb[3][2]) - total_air)
+            print("Bangun gagal. Kurang", pasir_needed, "pasir,", batu_needed, "batu, dan", air_needed, "air.")       
 
     
 

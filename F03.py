@@ -31,7 +31,7 @@ def validasi_jin(role):
                 print("\nMaaf, password harus memiliki panjang 5-25 karakter!\n")
                 continue
             else:
-                add_to_database(user_array, [[username_jin, password_jin, role]])
+                user_array = add_to_database(user_array, [[username_jin, password_jin, role]])
                 print("Mengumpulkan sesajen...")
                 print("Menyerahkan sesajen...")
                 print("Membacakan mantra...")

@@ -102,19 +102,6 @@ def delete_elmt(arr, indeks):
     arr = new_arr
     return arr
 
-# # Implementasi remove
-# def remove_elmt(arr, x):
-#     idx = None
-#     for i in range(len(arr)):
-#         if arr[i] == x:
-#             idx = i
-#             break
-#     if idx != None:
-#         for i in range (idx, len(arr)-1):
-#             arr[i] = arr[i+1]
-#         arr.pop()
-#     return arr
-
 def array_kosong_count(arr: list):
     count = 0
     for i in range (len(arr)):
