@@ -17,7 +17,7 @@ def ubahjin():
 
             if konfirmasi == 'y' or konfirmasi == 'Y':
                 user[i][2] = 'Pembangun' if user[i][2] == 'Pengumpul' else 'Pengumpul'
-                print(user[i])
+                print(user)
                 print("\nJin telah berhasil diubah.")
                 found = True
                 break
