@@ -44,21 +44,7 @@ def my_split(string , delimit):
             word = str_append(word, string[i])
         i += 1
     arr = arr_append(temp_arr, word)
-    return arr
-
-# Implementasi untuk melakukan sortir data
-def sort(arr: list) -> list :
-  for i in range(array_length(arr)):
-    swapped = False
-    for j in range(0, array_length(arr)-i-1):
-      if arr[j] > arr[j+1]:
-        temp = arr[j]
-        arr[j] = arr[j+1]
-        arr[j+1] = temp
-        swapped = True
-    if not swapped:
-      break
-  return arr   
+    return arr 
 
 # B01 - Random Number Generator
 
@@ -108,3 +94,20 @@ def array_kosong_count(arr: list):
         if len(arr[i]) == 0:
             count += 1
     return count
+
+def geser_array(arr, index_jin):
+    # menghapus elemen yang dihapus dengan menggeser seluruh elemen setelahnya ke kiri
+    for i in range(index_jin, array_length(arr)-1):
+        arr[i] = arr[i+1]
+    arr[array_length(arr)-1] = []
+    
+    # menggeser elemen yang kosong ke kanan
+    for i in range(len(arr)):
+        if not arr[i]:
+            j = i+1
+            while j < len(arr) and not arr[j]:
+                j += 1
+            if j == len(arr):
+                break
+            arr[i] = arr[j]
+            arr[j] = []

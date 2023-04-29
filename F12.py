@@ -1,18 +1,23 @@
-from function import *
 from csvfunction import *
+from function import *
+from database import *
+
+role = "roro_jonggrang"
 
 def ayamberkokok():
-    global candi
-    print("\nKukuruyuk.. Kukuruyuk..\n")
+    global role
+    if role == "roro_jonggrang":
+        print("\nKukuruyuk.. Kukuruyuk..\n")
 
-    jumlah_candi = array_length(candi)-1 #jumlah candi dikurangi header
+        # Menghitung Jumlah Candi (dikurangi Header dan Database Kosong)
+        jumlah_candi = (array_length(candi) - array_kosong_count(candi) - 1) 
 
-    print("jumlah Candi:" + str(jumlah_candi)) # blm tau nama variabel nya apa
+        print("jumlah Candi: " + str(jumlah_candi)) # blm tau nama variabel nya apa
 
-    if jumlah_candi < 100:
-        print("Selamat, Roro Jonggrang memenangkan permainan!")
-        print("Roro jonggrang dikutuk menjadi candi.")
+        if jumlah_candi < 100:
+            print("\nSelamat, Roro Jonggrang memenangkan permainan!")
+            print("Roro jonggrang dikutuk menjadi candi.")
+        else:
+            print("Yah, Bandung Bondowoso memenangkan permainan")
     else:
-        print("Yah, Bandung Bondowoso memenangkan permainan")
-
-    exit()
+        print("Maaf, Command ini hanya bisa diakses oleh Roro Jonggrang!")
