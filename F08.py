@@ -53,7 +53,7 @@ def batchbangun():
         print("Ga punya akses!")
         return
     
-    pembangun_count = role_count(user_csv, "Pembangun")
+    pembangun_count = role_count(user, "Pembangun")
 
     if pembangun_count == 0:
         print("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
@@ -91,6 +91,7 @@ def batchbangun():
             database_jin = database_username_jin(user, 'Pembangun')
             for i in range (pembangun_count):
                 candi = add_to_database(candi, [[str(array_length(candi_csv)+i), database_jin[i], str(riwayat_total[i][0]), str(riwayat_total[i][1]), str(riwayat_total[i][2])]])
+                print(candi)
         else:
             pasir_needed = abs(int(bb[1][2]) - total_pasir)
             batu_needed = abs(int(bb[2][2]) - total_batu)
@@ -104,7 +105,4 @@ def database_username_jin(arr, role):
             result = arr_append(result, arr[i][0])  # menambahkan nilai index[i][0] ke dalam result
     return result
 
-    
-
-
-
+batchbangun()

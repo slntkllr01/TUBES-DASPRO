@@ -1,47 +1,84 @@
-from F01 import *
-from database import *
 from csvfunction import *
 from function import *
+from database import *
 
-def harga_candi(candi, idx_candi) : 
-    return  1000*candi[idx_candi][2] + 15000*candi[idx_candi][3]  + 7500*candi[idx_candi][4] 
+def hargacandi(pasir, batu, air):
+    harga = 1000 * pasir + 15000 * batu + 7500 * air
+    return harga
 
-def laporancandi() :
-    harga_termurah = 9999999999 
-    harga_termahal = 0
-    id_termurah = id_termahal = 0 
+role = 'bandung_bondowoso'
 
-    if login() == True :
-        jumlah_pasir = 0
-        jumlah_batu = 0 
-        jumlah_air = 0
-        total_candi = (array_length(candi) - array_kosong_count(candi)) - 1
+def laporancandi():
+    global role
+    if role == 'bandung_bondowoso':
 
-        if total_candi != 0 : 
-            for i in range(1, array_length(candi) + 1) : 
-                jumlah_pasir += candi[i][2]
-                jumlah_batu += candi[i][3] 
-                jumlah_air += candi[i][4]
+        # mencari Total Candi dan Bahan Bangunan
+        total_candi = (array_length(candi) - array_kosong_count(candi) - 1)
+        total_pasir = totalharga(2)
+        total_batu = totalharga(3)
+        total_air = totalharga(4)
 
-                harga_candi = harga_candi(candi,i)
-                if harga_candi > harga_termahal : 
-                    harga_termahal = harga_candi
-                    id_termahal = i
+        # Mencari ID Candi Termurah dan Termahal beserta Harganya (dalam Rupiah)
+        harga_termurah = float('inf')
+        harga_termahal = float('-inf')
+        id_termurah = ''
+        id_termahal = ''
 
+        length_candi = (array_length(candi) - array_kosong_count(candi))
 
-                if harga_candi < harga_termurah : 
-                    harga_termurah = harga_candi
-                    id_termurah = i
+        for i in range(1, (length_candi)):
+
+            pasir = int(candi[i][2])
+            batu = int(candi[i][3])
+            air = int(candi[i][4])
+            harga = hargacandi(pasir, batu, air)
+            
+            if harga < harga_termurah:
+                harga_termurah = harga
+                id_termurah = candi[i][0]
+                
+            if harga > harga_termahal:
+                harga_termahal = harga
+                id_termahal = candi[i][0]
+
+        print("Total Candi:", total_candi)
+        print("Total Pasir yang digunakan:", total_pasir)
+        print("Total Batu yang digunakan:", total_batu)
+        print("Total Air yang digunakan:", total_air)
+
+        if length_candi == 1:
+            print("ID Candi Termahal: -")
+            print("ID Candi Termurah: -")
+        else:
+            print("ID Candi Termahal:", id_termahal, "(Rp " + formatting_harga(harga_termahal) + ")")
+            print("ID Candi Termurah:", id_termurah, "(Rp " + formatting_harga(harga_termurah) + ")")
         
-        else :
-            id_termurah = id_termahal = "-"
+    else:
+        print("Laporan candi hanya dapat diakses oleh akun Bandung Bondowoso.")    
 
-        print(f"> Total Candi: {total_candi}")
-        print(f"> Total Pasir yang digunakan: {jumlah_pasir}")
-        print(f"> Total Batu yang digunakan: {jumlah_batu}")
-        print(f"> Total Air yang digunakan: {jumlah_air}")
-        print("> ID Candi Termahal:" + str(id_termahal) + "Rp{:,.2f}".format(id_termahal))
-        print("> ID Candi Termurah:" + str(id_termurah) + "Rp{:,.2f}".format(id_termurah))
+def totalharga(indeks):
 
-    else : 
-        print("Laporan ini hanya bisa diakses oleh akun Bondowoso")
+    total_harga = 0
+
+    for i in range (1, array_length(candi) - array_kosong_count(candi)):
+        total_harga += int(candi[i][indeks])
+
+    return total_harga
+
+def hargacandi(pasir, batu, air):
+    harga = 1000 * pasir + 15000 * batu + 7500 * air
+    return harga
+
+def formatting_harga(nominal):
+    angka_str = str(nominal)
+    new_str = ''
+
+    for i in range(len(angka_str)):
+        digit = angka_str[i]
+        if (len(angka_str) - i) % 3 == 0 and i != 0:
+            new_str += '.'
+        new_str += digit
+
+    return new_str
+
+laporancandi()

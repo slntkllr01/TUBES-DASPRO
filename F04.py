@@ -61,23 +61,6 @@ def hapus_candi(username):
         else:
             i += 1
     return candi_array, stack
-
-def geser_array(arr, index_jin):
-    # menghapus elemen yang dihapus dengan menggeser seluruh elemen setelahnya ke kiri
-    for i in range(index_jin, array_length(arr)-1):
-        arr[i] = arr[i+1]
-    arr[array_length(arr)-1] = []
-    
-    # menggeser elemen yang kosong ke kanan
-    for i in range(len(arr)):
-        if not arr[i]:
-            j = i+1
-            while j < len(arr) and not arr[j]:
-                j += 1
-            if j == len(arr):
-                break
-            arr[i] = arr[j]
-            arr[j] = []
             
     return arr
 
