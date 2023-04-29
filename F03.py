@@ -65,7 +65,7 @@ def summonjin():
             else:
                 print("Sorry banget, tapi lu siapa?")
     else:
-        print("Lu ga punya akses!")
+        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
 
 
 

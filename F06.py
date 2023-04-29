@@ -18,7 +18,7 @@ username = 'jin1'
 def bangun():
     global role, username, user, bb, candi
     if role != 'Pembangun':
-        print("Ga punya akses!")
+        print("Maaf, Command ini hanya bisa diakses oleh Jin Pembangun!")
         return
     
     pasir_needed = RandomNumber(1,5,3456789)

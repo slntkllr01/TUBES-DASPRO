@@ -100,6 +100,3 @@ def cari_index(parameter, array):
     for i in range(array_length(array)):
         if array[i][0] == parameter:
             return i
-        
-
-print(cari_index())

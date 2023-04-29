@@ -56,7 +56,7 @@ def laporancandi():
     else:
         print("Laporan candi hanya dapat diakses oleh akun Bandung Bondowoso.")    
 
-def totalharga(indeks):
+def totalharga(indeks : int) -> int:
 
     total_harga = 0
 
@@ -65,11 +65,11 @@ def totalharga(indeks):
 
     return total_harga
 
-def hargacandi(pasir, batu, air):
+def hargacandi(pasir : int, batu : int, air : int) -> int:
     harga = 1000 * pasir + 15000 * batu + 7500 * air
     return harga
 
-def formatting_harga(nominal):
+def formatting_harga(nominal : int) -> str:
     angka_str = str(nominal)
     new_str = ''
 
@@ -80,5 +80,3 @@ def formatting_harga(nominal):
         new_str += digit
 
     return new_str
-
-laporancandi()
