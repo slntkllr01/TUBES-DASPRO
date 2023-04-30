@@ -80,5 +80,3 @@ def save():
             print("Berhasil menyimpan data di folder save/" + str(directory))
 
     os.chdir('../')  
-
-save()
