@@ -5,6 +5,32 @@ import os
 
 clear_terminal =lambda:os.system('cls')
 
+def summonjin():
+    if role == 'Bandung_bondowoso':
+        if array_length(candi) - array_kosong_count(user) >= 100:
+            print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu.")
+            return
+        
+        print("Jenis jin yang dapat dipanggil:")
+        print(" (1) Pengumpul - Bertugas mengumpulkan bahan bangunan")
+        print(" (2) Pembangun - bertugas membangun candi")
+
+        while True:
+            jenis_jin = int(input("Masukkan nomor jenis jin yang dipanggil: "))
+
+            if jenis_jin == 1:
+                print("\nMemilih jin “Pengumpul”.\n")
+                validasi_jin("Pengumpul")
+                break
+            elif jenis_jin == 2:
+                print("\nMemilih jin “Pembangun”.\n")
+                validasi_jin("Pembangun")
+                break
+            else:
+                print("Sorry banget, tapi lu siapa?")
+    else:
+        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
+
 def validasi_username(variable):
     valid = True
     for i in range (array_length(user) - array_kosong_count(user)):
@@ -33,35 +59,6 @@ def validasi_jin(role):
                 print("Membacakan mantra...")
                 print("\nJin", username_jin, "berhasil dipanggil!")
                 return
-
-
-role = 'Bandung_bondowoso'
-
-def summonjin():
-    if role == 'Bandung_bondowoso':
-        if array_length(candi) - array_kosong_count(user) >= 100:
-            print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu.")
-            return
-        
-        print("Jenis jin yang dapat dipanggil:")
-        print(" (1) Pengumpul - Bertugas mengumpulkan bahan bangunan")
-        print(" (2) Pembangun - bertugas membangun candi")
-
-        while True:
-            jenis_jin = int(input("Masukkan nomor jenis jin yang dipanggil: "))
-
-            if jenis_jin == 1:
-                print("\nMemilih jin “Pengumpul”.\n")
-                validasi_jin("Pengumpul")
-                break
-            elif jenis_jin == 2:
-                print("\nMemilih jin “Pembangun”.\n")
-                validasi_jin("Pembangun")
-                break
-            else:
-                print("Sorry banget, tapi lu siapa?")
-    else:
-        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
 
 
 

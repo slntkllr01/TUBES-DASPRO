@@ -1,5 +1,5 @@
-from function import *
 from csvfunction import *
+from function import *
 
 # Inisialisasi Array Database
 user = [[] for i in range (103)] # 1 untuk header
@@ -14,6 +14,7 @@ role = ''
 # Inisialisasi Status Login
 loginstatus = False
 
+# Array Database
 user_csv = csv_to_array('user.csv')
 user = add_to_database(user, user_csv)
 

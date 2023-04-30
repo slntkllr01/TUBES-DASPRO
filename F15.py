@@ -2,19 +2,15 @@ from database import *
 
 def help():
   if loginstatus == False:
-     print(f"""
+     print("""
 =========== HELP ===========
 1. login
    Untuk masuk menggunakan akun
-2. load
-   Untuk memuat file eksternal ke dalam permainan
-3. save
-   Untuk menyimpan data permainan
-4. exit
+2. exit
    Untuk keluar dari permainan""")
   else:
       if role == 'bandung_bondowoso' :
-        print(f"""
+        print("""
 =========== HELP ===========
 1. logout
    Untuk keluar dari akun yang digunakan sekarang
@@ -37,7 +33,7 @@ def help():
 10. exit
    Untuk keluar dari permainan""")
       elif role == 'roro_jonggrang':
-        print(f"""
+        print("""
 =========== HELP ===========
 1. logout
    Untuk keluar dari akun yang digunakan sekarang
@@ -49,9 +45,8 @@ def help():
    Untuk menyimpan data permainan
 5. exit
    Untuk keluar dari permainan""")
-      else : #Jin
-        if role == 'pengumpul':
-          print(f"""
+      elif role == 'Pengumpul':
+         print("""
 =========== HELP ===========
 1. logout
    Untuk keluar dari akun yang digunakan sekarang
@@ -61,8 +56,8 @@ def help():
    Untuk menyimpan data permainan
 4. exit
    Untuk keluar dari permainan""")
-        else : # role = Pembangun
-          print(f"""
+      else : # role = Pembangun
+         print("""
 =========== HELP ===========
 1. logout
    Untuk keluar dari akun yang digunakan sekarang
@@ -71,4 +66,4 @@ def help():
 3. save
    Untuk menyimpan data permainan
 4. exit
-   Untuk keluar dari permainan""")         
+   Untuk keluar dari permainan""")  

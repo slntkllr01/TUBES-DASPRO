@@ -15,6 +15,4 @@ def kumpul():
         bb[2][2] = int(bb[2][2]); bb[2][2] += batu
         bb[3][2] = int(bb[3][2]); bb[3][2] += air
 
-        print("Selamat! Jin menemukan", pasir, "pasir,", batu ," batu, dan", air, "air.") 
-
-kumpul()
+        print("Selamat! Jin menemukan", pasir, "pasir,", batu ," batu, dan", air, "air.")

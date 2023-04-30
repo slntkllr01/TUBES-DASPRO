@@ -1,38 +1,43 @@
-from csvfunction import *
 from function import *
 from database import *
 
 stack = []
 
-role = "bandung_bondowoso"
-
 def hapusjin():
-    global role, user_array, candi_array, stack
+    global stack, user, candi
     if role != "bandung_bondowoso":
         print("Anda tidak memiliki wewenang untuk menghapus jin!")
         return
     else:
+        print()
+        database_tabel = filter_array(user)
+        tabel_maker(database_tabel)
+        print()
         jin_username = input("Masukkan username jin : ")
         i = 0
         jin_found = False # menandai apakah jin dengan username tersebut telah ditemukan
-        while i < (array_length(user_array) - array_kosong_count(user_array)):
-            if jin_username == user_array[i][0]:
+        while i < (array_length(user) - array_kosong_count(user)):
+            if jin_username == user[i][0]:
                 jin_found = True
-                if user_array[i][2] != "Pembangun" and user_array[i][2] != "Pengumpul":
+                if user[i][2] != "Pembangun" and user[i][2] != "Pengumpul":
                     print("Bukan Jin! Tidak bisa dihapus!")
                     return
                 choice = input("Apakah anda yakin ingin menghapus jin dengan username " + str(jin_username) + " (Y/N)? ")
                 if choice == 'Y' or choice == 'y':
                     # hapus candi jika jin pembangun
-                    if user_array[i][2] == "Pembangun":
-                        hapus_candi(jin_username)
+                    if user[i][2] == "Pembangun":
+                        candi, stack = hapus_candi(jin_username)
+                        print(candi)
                     # Simpan array yang dihapus ke dalam stack sebelum dihapus
-                    stack = arr_append(stack, ("hapus", (user_array[i], candi_array[i])))
-                    print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
+                    stack = arr_append(stack, ("hapus", (user[i], candi[i])))
                     # Simpan array yang digeser ke dalam stack sebelum digeser
-                    user_array[i] = []
-                    stack = arr_append(stack, ("geser", (user_array, candi_array)))
-                    user_array = geser_array(user_array, i)
+                    user[i] = []
+                    stack = arr_append(stack, ("geser", (user, candi)))
+                    user = geser_array(user, i)
+                    print()
+                    database_tabel = filter_array(user)
+                    tabel_maker(database_tabel)
+                    print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
                     break
                 else: # Pilih N/n
                     break
@@ -42,21 +47,19 @@ def hapusjin():
             print("Maaf, Tidak ada jin dengan username tersebut.")
 
 def hapus_candi(username):
-    global user_array, candi_array, stack
+    global user, candi, stack
     
     # Loop melalui seluruh candi_array dan hapus semua candi dengan username yang sesuai
     i = 0
-    while i < (array_length(candi_array) - array_kosong_count(candi_array)):
-        if candi_array[i] and candi_array[i][1] == username:
+    while i < (array_length(candi) - array_kosong_count(candi)):
+        if candi[i] and candi[i][1] == username:
             # Simpan array yang dihapus ke dalam stack sebelum dihapus
-            stack = arr_append(stack, ("hapus_candi", (candi_array[i])))
-            candi_array[i] = []
-            candi_array = geser_array(candi_array, i)
+            stack = arr_append(stack, ("hapus_candi", (candi[i])))
+            candi[i] = []
+            candi = geser_array(candi, i)
         else:
             i += 1
-    return candi_array, stack
-            
-    return arr
+    return candi, stack
 
 def undo():
     global user_array, candi_array, stack
@@ -94,3 +97,21 @@ def cari_index(parameter, array):
     for i in range(array_length(array)):
         if array[i][0] == parameter:
             return i
+    
+def filter_array(arr):
+    # Inisialisasi array hasil dengan header
+    result = [['username', 'role']]
+    
+    # Iterasi elemen di arr mulai dari indeks 1
+    for i in range(1, len(arr)):
+        # Jika panjang elemen ke-i sama dengan 3
+        if len(arr[i]) == 3:
+            # Jika role-nya adalah Pengumpul atau Pembangun
+            if arr[i][2] == 'Pengumpul' or arr[i][2] == 'Pembangun':
+                # Tambahkan username dan role-nya ke dalam array hasil
+                result.append([arr[i][0], arr[i][2]])
+        else:
+            # Jika elemen ke-i bukan berupa list dengan panjang 3, tambahkan list kosong ke dalam array hasil
+            result.append([])
+
+    return result

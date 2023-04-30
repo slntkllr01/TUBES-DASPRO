@@ -102,5 +102,3 @@ def database_username_jin(arr, role):
         if array_length(arr[i]) >= 3 and arr[i][2] == role:  # Tujuannya agar tidak indexerror karena terdapat array kosong
             result = arr_append(result, arr[i][0])  # menambahkan nilai index[i][0] ke dalam result
     return result
-
-batchbangun()

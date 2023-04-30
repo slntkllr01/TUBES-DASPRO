@@ -53,16 +53,16 @@ def database_pembangun_candi(arr):
 
 def max_occurence(arr):
 
-    if len(arr) == 0:
+    if array_length(arr) == 0:
         return "-"
     
     max_count = 0
     max_item = None
     i = 0
-    while i < len(arr):
+    while i < array_length(arr):
         item_count = 0
         j = 0
-        while j < len(arr):
+        while j < array_length(arr):
             if arr[i] == arr[j]:
                 item_count += 1
             j += 1
@@ -74,16 +74,16 @@ def max_occurence(arr):
 
 def min_occurence(arr):
 
-    if len(arr) == 0:
+    if array_length(arr) == 0:
         return "-"
     
     min_count = float('inf')
     min_item = None
     i = 0
-    while i < len(arr):
+    while i < array_length(arr):
         item_count = 0
         j = 0
-        while j < len(arr):
+        while j < array_length(arr):
             if arr[i] == arr[j]:
                 item_count += 1
             j += 1
@@ -92,5 +92,3 @@ def min_occurence(arr):
             min_item = arr[i]
         i += 1
     return min_item
-
-laporanjin()

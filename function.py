@@ -110,4 +110,52 @@ def geser_array(arr, index_jin):
             if j == len(arr):
                 break
             arr[i] = arr[j]
-            arr[j] = []
+            arr[j] = []  
+    return arr
+
+def tabel_maker(arr):
+    # Mengecek apakah ada baris kosong di akhir array
+    arr_len = len(arr)
+    while arr_len > 0 and len(arr[arr_len-1]) == 0:
+        arr_len -= 1
+    
+    if arr_len == 0:
+        # Jika array kosong, keluar dari fungsi
+        return
+
+    max_lengths = []
+    for j in range(len(arr[0])):
+        max_len = 0
+        for i in range(arr_len):
+            if len(arr[i]) == 0:
+                continue  # Skip baris kosong
+            if len(arr[i][j]) > max_len:
+                max_len = len(arr[i][j])
+        max_lengths = arr_append(max_lengths, max_len)
+
+    # Menampilkan header tabel
+    separator = '+'
+    for j in range(len(arr[0])):
+        separator += '-' * (max_lengths[j] + 2) + '+'
+    print(separator)
+
+    row_format = '| '
+    for j in range(len(arr[0])):
+        row_format += '{:^{width}} | '.format(arr[0][j], width=max_lengths[j])
+    print(row_format)
+
+    # Menampilkan baris data
+    print(separator)
+
+    for i in range(1, arr_len):
+        if len(arr[i]) == 0:
+            continue  # Skip baris kosong
+
+        row_format = '| '
+        for j in range(len(arr[i])):
+            row_format += '{:^{width}} | '.format(arr[i][j], width=max_lengths[j])
+        print(row_format)
+
+    # Menampilkan separator akhir tabel
+    print(separator)
+

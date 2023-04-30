@@ -3,7 +3,6 @@ from function import *
 from database import *
 import time
 
-# Membaca file CSV
 arr = csv_to_array('user.csv')
 
 def login() :
@@ -44,7 +43,3 @@ def login() :
   remaining_attempts = max_attempts
 
   return False, '', '', ''
-
-# How to access login()
-loginstatus, username, password, role = login()
-
