@@ -2,8 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-role = 'roro_jonggrang'
-
 def hancurkancandi():
     global role
     if role != 'roro_jonggrang':

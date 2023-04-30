@@ -2,8 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-role = 'bandung_bondowoso'
-
 def role_count(arr : list, role : str) -> int :
     count = 0
     for i in range(len(arr) - array_kosong_count(arr)):

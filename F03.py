@@ -5,14 +5,10 @@ import os
 
 clear_terminal =lambda:os.system('cls')
 
-user_csv = csv_to_array('user.csv')
-user_array = add_to_database(user, user_csv)
-print(user_array)
-
 def validasi_username(variable):
     valid = True
-    for i in range (len(user_array) - array_kosong_count(user_array)):
-        if variable == user_array[i][0]:
+    for i in range (array_length(user) - array_kosong_count(user)):
+        if variable == user[i][0]:
             valid  = False
             break
         else:
@@ -43,7 +39,7 @@ role = 'Bandung_bondowoso'
 
 def summonjin():
     if role == 'Bandung_bondowoso':
-        if array_length(candi) - array_kosong_count(user_array) >= 100:
+        if array_length(candi) - array_kosong_count(user) >= 100:
             print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu.")
             return
         

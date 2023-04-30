@@ -2,12 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-def hargacandi(pasir, batu, air):
-    harga = 1000 * pasir + 15000 * batu + 7500 * air
-    return harga
-
-role = 'bandung_bondowoso'
-
 def laporancandi():
     global role
     if role == 'bandung_bondowoso':
@@ -80,3 +74,7 @@ def formatting_harga(nominal : int) -> str:
         new_str += digit
 
     return new_str
+
+def hargacandi(pasir, batu, air):
+    harga = 1000 * pasir + 15000 * batu + 7500 * air
+    return harga

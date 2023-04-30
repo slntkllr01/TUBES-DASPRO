@@ -14,16 +14,18 @@ def login() :
 
   # Meminta input username dan password
   while remaining_attempts > 0:
-    username = input("Masukkan Username: ")
-    password = input("Masukkan Password: ")
+    user_username = input("Masukkan Username: ")
+    user_password = input("Masukkan Password: ")
 
     for i in range(array_length(arr)):
-      if arr[i][0] == username:
-        if arr[i][1] == password:
+      if arr[i][0] == user_username:
+        if arr[i][1] == user_password:
+          print("\nSelamat datang,", user_username, "!")
+          print("Masukkan command 'help' untuk daftar command yang dapat kamu panggil.\n")
           role = arr[i][2]
           loginstatus = True
-          print("\nSelamat datang,", username, "!")
-          print("Masukkan command 'help' untuk daftar command yang dapat kamu panggil.\n")
+          username = user_username
+          password = user_password
           return loginstatus, username, password, role
         else:
             remaining_attempts -= 1
@@ -41,8 +43,8 @@ def login() :
   time.sleep(30)
   remaining_attempts = max_attempts
 
-  return False, None, None, None
+  return False, '', '', ''
 
-login()
-
+# How to access login()
+loginstatus, username, password, role = login()
 

@@ -2,11 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-user_csv = csv_to_array('user.csv')
-user = add_to_database(user, user_csv)
-
-role = 'bandung_bondowoso'
-
 def ubahjin():
     global role
     if role != 'bandung_bondowoso':

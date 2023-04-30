@@ -2,12 +2,6 @@ from csvfunction import *
 from function import *
 from database import *
 
-user_csv = csv_to_array('user.csv')
-user_array = add_to_database(user, user_csv)
-
-candi_csv = csv_to_array('candi.csv')
-candi_array = add_to_database(candi, candi_csv)
-
 stack = []
 
 role = "bandung_bondowoso"

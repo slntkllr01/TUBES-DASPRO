@@ -9,8 +9,6 @@ def role_count(arr : list, role : str) -> int :
             count += 1
     return count
 
-role = 'bandung_bondowoso'
-
 def batchkumpul():
     global user, role
 
