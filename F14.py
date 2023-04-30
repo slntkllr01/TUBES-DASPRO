@@ -2,7 +2,7 @@ from csvfunction import *
 from function import *
 from database import *
 import os
-import argparse
+from pathlib import Path
 
 def save():
     def save_data(file,data):
@@ -20,24 +20,63 @@ def save():
         return data_string
     
     directory = input("Masukkan nama folder penyimpanan: ")
-    parent = os.getcwd()
-    path = os.path.join(parent, directory)
-
     try:
-        os.mkdir(path)
+        save = [directory]
+        for s in save:
+            Path(f'save/{s}').mkdir(parents=True, exist_ok=True)
     except:
         FileExistsError
 
-    os.chdir('./' + directory)
-    print()
-    print("Saving...")
+    os.chdir('save/' + directory)
 
-    save_data("user.csv",user)
-    save_data("bahan_bangunan.csv",bahan_bangunan)
-    save_data("candi.csv",candi)
+    if not os.path.exists('save'): 
+        if os.path.isdir(directory):
+            print()
+            print("Saving...")
 
-    print("Berhasil menyimpan data di folder " + str(directory))
-    os.chdir('../')
+            save_data("user.csv",user)
+            save_data("bahan_bangunan.csv",bahan_bangunan)
+            save_data("candi.csv",candi)
 
-save()
-    
+            print()
+            print("Membuat folder save/" + str(directory), "...")
+            print()
+            print("Berhasil menyimpan data di folder save/" + str(directory))
+        else:
+            print()
+            print("Saving...")
+
+            save_data("user.csv",user)
+            save_data("bahan_bangunan.csv",bahan_bangunan)
+            save_data("candi.csv",candi)
+
+            print()
+            print("Membuat folder save...")
+            print("Membuat folder save/" + str(directory),"...")
+            print()
+            print("Berhasil menyimpan data di folder save/" + str(directory))
+    else:
+        if os.path.isdir(directory):
+            print()
+            print("Saving...")
+
+            save_data("user.csv",user)
+            save_data("bahan_bangunan.csv",bahan_bangunan)
+            save_data("candi.csv",candi)
+
+            print()
+            print("Berhasil menyimpan data di folder " + str(directory))
+        else:
+            print()
+            print("Saving...")
+
+            save_data("user.csv",user)
+            save_data("bahan_bangunan.csv",bahan_bangunan)
+            save_data("candi.csv",candi)
+
+            print()
+            print("Membuat folder save/" + str(directory), "...")
+            print()
+            print("Berhasil menyimpan data di folder save/" + str(directory))
+
+    os.chdir('../')  

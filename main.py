@@ -11,7 +11,7 @@ from F08 import *
 # from F11 import *
 # from F12 import *
 from F13 import *
-# from F14 import *
+from F14 import *
 from F15 import *
 from F16 import *
 from database import *
@@ -52,8 +52,8 @@ def main_bondowoso():
     #     laporanjin()
     # elif command == "laporancandi":
     #     laporancandi()
-    # elif command == "save":
-    #     save()
+    elif command == "save":
+        save()
     else:
         print("Maaf, Command tidak terdaftar!")
         return main_bondowoso()
@@ -71,8 +71,8 @@ def main_roro():
     #     hancurkancandi()
     # elif command == "ayamberkokok":
     #     ayamberkokok()
-    # elif command == "save":
-    #     save()
+    elif command == "save":
+        save()
     else:
         print("Maaf, Command tidak terdaftar!")
         return main_roro()
