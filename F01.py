@@ -11,7 +11,7 @@ def login(arr) :
 
   # Meminta input username dan password
   while remaining_attempts > 0:
-    user_username = input("Masukkan Username: ")
+    user_username = input("\nMasukkan Username: ")
     user_password = input("Masukkan Password: ")
 
     for i in range(array_length(arr) - array_kosong_count(arr)):
@@ -28,15 +28,15 @@ def login(arr) :
             remaining_attempts -= 1
             if remaining_attempts > 0:
                 print("\nPassword salah! Mohon input password yang benar!")
-                print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!\n")
+                print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!")
             break
     else:
       remaining_attempts -= 1
       if remaining_attempts > 0:
         print("\nMohon maaf, Username tidak terdaftar!")
-        print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!\n")
+        print("\nSisa attempt Anda sebanyak", remaining_attempts, "kali.\nPastikan Username dan Password yang Anda input Benar!")
   print("\nMohon Maaf, Anda telah salah memasukkan username atau password sebanyak 3x.")
-  print("Silakan coba lagi dalam 30 detik.")
+  print("Silakan coba lagi dalam 30 detik.\n")
   time.sleep(30)
   remaining_attempts = max_attempts
 

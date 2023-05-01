@@ -16,9 +16,6 @@ from F15 import *
 from F16 import *
 from database import *
 
-# Menjalankan fungsi Load
-candi, bb, user = load(user, bahan_bangunan, candi)
-
 # Fungsi untuk memanggil main sebelum login (rekursif)
 def main_program():
     global loginstatus, role, username, password
@@ -38,6 +35,9 @@ def main_program():
         print("Maaf, Command tidak terdaftar!")
         main_program()
 
+# Menjalankan fungsi Load
+candi, bb, user = load(user, bahan_bangunan, candi)
+
 # Menu yang bisa dipanggil bondowoso (rekursif)
 def main():
     command = input(">>> ")
@@ -45,12 +45,12 @@ def main():
         role_help(loginstatus, role)
         main()
     elif command == "exit":
-        exit()
+        exit(user, bb, candi)
     elif command == "summonjin":
         summonjin(role, user, candi)
         main()
     elif command == "hapusjin":
-        hapusjin(role, user, candi)
+        print(hapusjin(role, user, candi, stack))
         main()
     elif command == "ubahjin":
         ubahjin(role, user)
@@ -76,6 +76,13 @@ def main():
     elif command == "hancurkancandi":
         hancurkancandi(role, candi)
         main()
+    elif command == "undo":
+        if role == "bandung_bondowoso":
+            undo(user, candi, stack)
+            main()
+        else:
+            print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")  
+            main()  
     elif command == "ayamberkokok":
         ayamberkokok(role, candi)
         if role == 'roro_jonggrang':
@@ -83,13 +90,17 @@ def main():
         else:
             main()
     elif command == "save":
-        save()
+        save(user, bb, candi)
         main()
     elif command == "logout":
         logout(loginstatus, username, password, role)
         main_program()
+    elif command == "login":
+        print("\nLogin gagal!\nAnda telah login dengan username " + str(username) + ", silahkan lakukan “logout” sebelum melakukan login kembali.\n")
+        main()
     else:
         print("Maaf, Command tidak terdaftar!")
         main()
 
+# Menjalankan Main Program
 main_program()

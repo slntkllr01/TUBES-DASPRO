@@ -1,6 +1,7 @@
 # B01 - LCG
 
 import time, os
+from function import *
 
 def randomseed(x):
     now = time.perf_counter()

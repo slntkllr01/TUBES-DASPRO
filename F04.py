@@ -1,9 +1,8 @@
 from function import *
 
-stack = []
-
-def hapusjin(role, user, candi):
-    global stack
+def hapusjin(role, user, candi, stack):
+    if not stack:
+        stack = []
     if role != "bandung_bondowoso":
         print("Anda tidak memiliki wewenang untuk menghapus jin!")
         return
@@ -36,7 +35,7 @@ def hapusjin(role, user, candi):
                     database_tabel = filter_array(user)
                     tabel_maker(database_tabel)
                     print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
-                    return
+                    return stack
                 else: # Pilih N/n
                     break
             else:
@@ -46,7 +45,7 @@ def hapusjin(role, user, candi):
 
 def hapus_candi(username, user, candi, stack):
     
-    # Loop melalui seluruh candi_array dan hapus semua candi dengan username yang sesuai
+    # Loop melalui seluruh candi dan hapus semua candi dengan username yang sesuai
     i = 0
     while i < (array_length(candi) - array_kosong_count(candi)):
         if candi[i] and candi[i][1] == username:
@@ -58,57 +57,71 @@ def hapus_candi(username, user, candi, stack):
             i += 1
     return candi, stack
 
-def undo():
-    global user_array, candi_array, stack
+# B04 - Undo
 
+def undo(user, candi, stack):
     # ambil perubahan terakhir dari stack
     if not stack:
         print("Tidak ada perubahan yang dapat di-undo.")
         return
     else:
-        stack_last_idx = (array_length(stack)-1)
-        perubahan_terakhir = delete_elmt(stack, stack_last_idx)
+        stack_last_idx = len(stack)-1
+        perubahan_terakhir = stack[stack_last_idx]
+        stack = stack[:stack_last_idx]
 
     # undo perubahan
     if perubahan_terakhir[0] == 'hapus_jin':
-        # hapus jin dari user_array
+        # hapus jin dari user
         jin = perubahan_terakhir[1][0]
-        index_jin = cari_index(jin[0], user_array)
-        user_array[index_jin] = jin
+        index_jin = 0
+        while index_jin < len(user):
+            if user[index_jin][0] == jin[0]:
+                user[index_jin] = jin
+                break
+            index_jin += 1
+
         # hapus candi yang berkaitan
-        candi_array = perubahan_terakhir[1][1]
-        hapus_candi(jin[0])
-        # pergeseran array
-        user_array = geser_array(user_array, index_jin)
+        candi_jin = perubahan_terakhir[1][1]
+        index_candi = 0
+        while index_candi < len(candi):
+            if candi[index_candi][0] == candi_jin[0]:
+                candi[index_candi] = candi_jin
+                break
+            index_candi += 1
+
         print("Perubahan pada penghapusan jin telah di-undo.")
     elif perubahan_terakhir[0] == 'hapus_candi':
-        # hapus candi dari candi_array
-        candi = perubahan_terakhir[1][0]
-        index_candi = cari_index(candi[0], candi_array)
-        candi_array[index_candi] = candi
-        # pergeseran array
-        candi_array = geser_array(candi_array, index_candi)
+        # hapus candi dari candi
+        candi_item = perubahan_terakhir[1][0]
+        index_candi = 0
+        while index_candi < len(candi):
+            if candi[index_candi][0] == candi_item[0]:
+                candi[index_candi] = candi_item
+                break
+            index_candi += 1
+
         print("Perubahan pada penghapusan candi telah di-undo.")
 
 def cari_index(parameter, array):
     for i in range(array_length(array)):
         if array[i][0] == parameter:
             return i
+    return
     
 def filter_array(arr):
     # Inisialisasi array hasil dengan header
     result = [['username', 'role']]
     
     # Iterasi elemen di arr mulai dari indeks 1
-    for i in range(1, len(arr)):
+    for i in range(1, array_length(arr)):
         # Jika panjang elemen ke-i sama dengan 3
         if len(arr[i]) == 3:
             # Jika role-nya adalah Pengumpul atau Pembangun
             if arr[i][2] == 'Pengumpul' or arr[i][2] == 'Pembangun':
                 # Tambahkan username dan role-nya ke dalam array hasil
-                result.append([arr[i][0], arr[i][2]])
+                result = arr_append(result, [arr[i][0], arr[i][2]])
         else:
             # Jika elemen ke-i bukan berupa list dengan panjang 3, tambahkan list kosong ke dalam array hasil
-            result.append([])
+            result = arr_append(result, [])
 
     return result

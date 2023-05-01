@@ -16,24 +16,23 @@ def csv_to_array(file):
 
 
 # Tulis File CSV
-def array_to_csv(arr, filename):
+def array_to_csv(arr):
     if not arr:
         return ""
 
     csv_string = ""
-    row_length = array_length(arr)
+    row_length = (array_length(arr) - array_kosong_count(arr))
     col_length = array_length(arr[0])
 
     for i in range(row_length):
-      row_data = ""
-      for j in range(col_length):
-          if j < array_length(arr):
-              row_data += str(arr[i][j])
-              if j < array_length(arr[i])-1:
-                  row_data += ";"
-          if j == col_length-1 and i < row_length-1 and array_length(arr[i+1]) > 0:
-              row_data += "\n"
-      csv_string += row_data
+        row_data = ""
+        for j in range(col_length):
+            if j < col_length:
+                row_data += str(arr[i][j])
+                if j < col_length-1:
+                    row_data += ";"
+            if j == col_length-1 and i < row_length-1 and row_length > i+1:
+                row_data += "\n"
+        csv_string += row_data
 
-    with open(filename, 'w') as file:
-      file.write(csv_string)
+    return csv_string
