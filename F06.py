@@ -1,16 +1,14 @@
-from csvfunction import *
 from function import *
-from database import *
+from Bonus import *
 
-def bangun():
-    global role, username, user, bb, candi
+def bangun(role, username, user, bb, candi):
     if role != 'Pembangun':
         print("Maaf, Command ini hanya bisa diakses oleh Jin Pembangun!")
         return
     
-    pasir_needed = RandomNumber(1,5,3456789)
-    batu_needed = RandomNumber(1, 5, 123456)
-    air_needed = RandomNumber(1,5,765432)
+    pasir_needed = lcg(1,5,3456789)
+    batu_needed = lcg(1, 5, 123456)
+    air_needed = lcg(1,5,765432)
 
     total_pasir = int(bb[1][2])
     total_batu = int(bb[2][2])

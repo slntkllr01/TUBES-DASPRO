@@ -1,6 +1,5 @@
-from csvfunction import *
 from function import *
-from database import *
+from Bonus import *
 
 def role_count(arr : list, role : str) -> int :
     count = 0
@@ -9,25 +8,24 @@ def role_count(arr : list, role : str) -> int :
             count += 1
     return count
 
-def batchkumpul():
-    global user, role
+def batchkumpul(user, bb, role):
 
     # Melakukan Validasi role
     if role != 'bandung_bondowoso':
-        print("Ga punya akses!")
+        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
         return
     
     # Inisialisasi Jumlah Pasir, Batu, Air yang terkumpul untuk satu jin
-    pasir = RandomNumber(0, 5, 1344567543)
-    batu = RandomNumber(0, 5, 4765432345)
-    air = RandomNumber(0, 5, 8765432344)
+    pasir = lcg(0, 5, 1344567543)
+    batu = lcg(0, 5, 4765432345)
+    air = lcg(0, 5, 8765432344)
 
     # Inisialisasi Total Jumlah Pasir, Batu, Air yang terkumpul
     total_pasir = 0
     total_batu = 0
     total_air = 0
 
-    pengumpul_count = role_count(user_csv, "Pengumpul")
+    pengumpul_count = role_count(user, "Pengumpul")
 
     for i in range (pengumpul_count):
         total_pasir += pasir; total_batu += batu; total_air += air
@@ -44,11 +42,10 @@ def batchkumpul():
     print("Mengerahkan", pengumpul_count, "jin untuk mengumpulkan bahan.")
     print("Jin menemukan total", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")   
 
-def batchbangun():
-    global user, candi
+def batchbangun(user, candi, bb, role):
     # Melakukan Validasi role
     if role != 'bandung_bondowoso':
-        print("Ga punya akses!")
+        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
         return
     
     pembangun_count = role_count(user, "Pembangun")
@@ -69,9 +66,9 @@ def batchbangun():
         for i in range (pembangun_count):
 
             # Inisialisasi Jumlah Pasir, Batu, Air yang dibutuhkan untuk satu jin
-            pasir = RandomNumber(0, 5, 234567889)
-            batu = RandomNumber(0, 5, 678934569)
-            air = RandomNumber(0, 5, 345678984)
+            pasir = lcg(0, 5, 234567889)
+            batu = lcg(0, 5, 678934569)
+            air = lcg(0, 5, 345678984)
 
             total_pasir += pasir; total_batu += batu; total_air += air
             riwayat_total[i] = [pasir, batu, air]
@@ -88,8 +85,7 @@ def batchbangun():
             # Meng-update candi yang telah dibangun ke database candi
             database_jin = database_username_jin(user, 'Pembangun')
             for i in range (pembangun_count):
-                candi = add_to_database(candi, [[str(array_length(candi_csv)+i), database_jin[i], str(riwayat_total[i][0]), str(riwayat_total[i][1]), str(riwayat_total[i][2])]])
-                print(candi)
+                candi = add_to_database(candi, [[str(array_length(candi)+i), database_jin[i], str(riwayat_total[i][0]), str(riwayat_total[i][1]), str(riwayat_total[i][2])]])
         else:
             pasir_needed = abs(int(bb[1][2]) - total_pasir)
             batu_needed = abs(int(bb[2][2]) - total_batu)

@@ -1,10 +1,9 @@
 from function import *
-from database import *
 
 stack = []
 
-def hapusjin():
-    global stack, user, candi
+def hapusjin(role, user, candi):
+    global stack
     if role != "bandung_bondowoso":
         print("Anda tidak memiliki wewenang untuk menghapus jin!")
         return
@@ -26,8 +25,7 @@ def hapusjin():
                 if choice == 'Y' or choice == 'y':
                     # hapus candi jika jin pembangun
                     if user[i][2] == "Pembangun":
-                        candi, stack = hapus_candi(jin_username)
-                        print(candi)
+                        candi, stack = hapus_candi(jin_username, user, candi, stack)
                     # Simpan array yang dihapus ke dalam stack sebelum dihapus
                     stack = arr_append(stack, ("hapus", (user[i], candi[i])))
                     # Simpan array yang digeser ke dalam stack sebelum digeser
@@ -38,7 +36,7 @@ def hapusjin():
                     database_tabel = filter_array(user)
                     tabel_maker(database_tabel)
                     print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
-                    break
+                    return
                 else: # Pilih N/n
                     break
             else:
@@ -46,8 +44,7 @@ def hapusjin():
         if not jin_found: # jika jin dengan username tersebut tidak ditemukan
             print("Maaf, Tidak ada jin dengan username tersebut.")
 
-def hapus_candi(username):
-    global user, candi, stack
+def hapus_candi(username, user, candi, stack):
     
     # Loop melalui seluruh candi_array dan hapus semua candi dengan username yang sesuai
     i = 0

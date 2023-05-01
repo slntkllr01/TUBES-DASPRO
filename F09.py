@@ -1,16 +1,13 @@
-from csvfunction import *
 from function import *
-from database import *
 
 def role_count(arr : list, role : str) -> int :
     count = 0
-    for i in range(len(arr) - array_kosong_count(arr)):
+    for i in range(array_length(arr) - array_kosong_count(arr)):
         if arr[i][2] == role:
             count += 1
     return count
 
-def laporanjin():
-    global role
+def laporanjin(role, bb, user, candi):
     if role == 'bandung_bondowoso':
 
         # mencari Total Jin
@@ -39,7 +36,7 @@ def laporanjin():
     print("Jin Termalas :",termalas)
     print("Jumlah Pasir :", jumlah_pasir, "unit")
     print("Jumlah Air :", jumlah_air, "unit") 
-    print("Jumlah Batu :", jumlah_batu, "unit")   
+    print("Jumlah Batu :", jumlah_batu, "unit\n")   
 
 def database_pembangun_candi(arr):
     result = []  # list kosong untuk menampung hasil

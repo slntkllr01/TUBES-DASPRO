@@ -1,9 +1,7 @@
-from csvfunction import *
 from function import *
-from database import *
 
-def ayamberkokok():
-    global role
+
+def ayamberkokok(role, candi):
     if role == "roro_jonggrang":
         print("\nKukuruyuk.. Kukuruyuk..\n")
 

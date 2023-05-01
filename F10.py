@@ -1,16 +1,13 @@
-from csvfunction import *
 from function import *
-from database import *
 
-def laporancandi():
-    global role
+def laporancandi(candi, role):
     if role == 'bandung_bondowoso':
 
         # mencari Total Candi dan Bahan Bangunan
         total_candi = (array_length(candi) - array_kosong_count(candi) - 1)
-        total_pasir = totalharga(2)
-        total_batu = totalharga(3)
-        total_air = totalharga(4)
+        total_pasir = totalharga(2, candi)
+        total_batu = totalharga(3, candi)
+        total_air = totalharga(4, candi)
 
         # Mencari ID Candi Termurah dan Termahal beserta Harganya (dalam Rupiah)
         harga_termurah = float('inf')
@@ -35,10 +32,10 @@ def laporancandi():
                 harga_termahal = harga
                 id_termahal = candi[i][0]
 
-        print("Total Candi:", total_candi)
+        print("\nTotal Candi:", total_candi)
         print("Total Pasir yang digunakan:", total_pasir)
         print("Total Batu yang digunakan:", total_batu)
-        print("Total Air yang digunakan:", total_air)
+        print("Total Air yang digunakan:", total_air, "\n")
 
         if length_candi == 1:
             print("ID Candi Termahal: -")
@@ -50,7 +47,7 @@ def laporancandi():
     else:
         print("Laporan candi hanya dapat diakses oleh akun Bandung Bondowoso.")    
 
-def totalharga(indeks : int) -> int:
+def totalharga(indeks : int, candi) -> int:
 
     total_harga = 0
 

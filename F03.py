@@ -1,12 +1,8 @@
 from function import *
-from database import *
 from csvfunction import *
-import os
 
-clear_terminal =lambda:os.system('cls')
-
-def summonjin():
-    if role == 'Bandung_bondowoso':
+def summonjin(role, user, candi):
+    if role == 'bandung_bondowoso':
         if array_length(candi) - array_kosong_count(user) >= 100:
             print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu.")
             return
@@ -20,18 +16,18 @@ def summonjin():
 
             if jenis_jin == 1:
                 print("\nMemilih jin “Pengumpul”.\n")
-                validasi_jin("Pengumpul")
+                validasi_jin("Pengumpul", user)
                 break
             elif jenis_jin == 2:
                 print("\nMemilih jin “Pembangun”.\n")
-                validasi_jin("Pembangun")
+                validasi_jin("Pembangun", user)
                 break
             else:
                 print("Sorry banget, tapi lu siapa?")
     else:
         print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
 
-def validasi_username(variable):
+def validasi_username(variable, user):
     valid = True
     for i in range (array_length(user) - array_kosong_count(user)):
         if variable == user[i][0]:
@@ -41,10 +37,10 @@ def validasi_username(variable):
             valid = True
     return valid
 
-def validasi_jin(role):
+def validasi_jin(role, user):
     while True:
         username_jin = input("Masukkan username jin: ")
-        if not validasi_username(username_jin):
+        if not validasi_username(username_jin, user):
             print("\nMohon Maaf, Username", username_jin, "sudah diambil\nSilakan pilih username lain!\n")
             continue
         while True:
@@ -53,7 +49,7 @@ def validasi_jin(role):
                 print("\nMaaf, password harus memiliki panjang 5-25 karakter!\n")
                 continue
             else:
-                user_array = add_to_database(user_array, [[username_jin, password_jin, role]])
+                user = add_to_database(user, [[username_jin, password_jin, role]])
                 print("Mengumpulkan sesajen...")
                 print("Menyerahkan sesajen...")
                 print("Membacakan mantra...")

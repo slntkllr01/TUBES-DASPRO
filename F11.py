@@ -1,9 +1,6 @@
-from csvfunction import *
 from function import *
-from database import *
 
-def hancurkancandi():
-    global role
+def hancurkancandi(role, candi):
     if role != 'roro_jonggrang':
         print("Maaf, Command ini hanya bisa diakses oleh Roro Jonggrang!")
     else:
@@ -17,7 +14,6 @@ def hancurkancandi():
                         candi[i] = []
                         print("Candi telah berhasil dihancurkan.")
                         geser_array(candi, i)
-                        print(candi)
                         Validasi = False
                         break
                     else:

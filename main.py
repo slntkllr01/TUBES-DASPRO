@@ -14,10 +14,10 @@ from F13 import *
 from F14 import *
 from F15 import *
 from F16 import *
-from database import *
 
 # Fungsi untuk memanggil main sebelum login (rekursif)
 def main_program():
+    global loginstatus, role, username, password
     command = input(">>> ")
     if command == "login":
         loginstatus, username, password, role = login()
@@ -38,7 +38,7 @@ def main_program():
 def main_bondowoso():
     command = input(">>> ")
     if command == "help":
-        help()
+        role_help(loginstatus, role)
         main_bondowoso()
     elif command == "exit":
         exit()
@@ -142,13 +142,13 @@ def main_pengumpul():
 
 # Fungsi untuk main (menu utama)
 def main(role):
-    if role == "pembangun":
+    if role == "Pembangun":
         main_pembangun()
-    elif role == "pengumpul":
+    elif role == "Pengumpul":
         main_pengumpul()
-    elif role == "roro":
+    elif role == "roro_jonggrang":
         main_roro()
-    elif role == "bondowoso":
+    elif role == "bandung_bondowoso":
         main_bondowoso()
 
 main_program()

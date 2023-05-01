@@ -1,13 +1,13 @@
 from database import *
 
-def help():
+def role_help(loginstatus, role):
   if loginstatus == False:
      print("""
 =========== HELP ===========
 1. login
    Untuk masuk menggunakan akun
 2. exit
-   Untuk keluar dari permainan""")
+   Untuk keluar dari permainan\n""")
   else:
       if role == 'bandung_bondowoso' :
         print("""
@@ -31,7 +31,7 @@ def help():
 9. save
    Untuk menyimpan data permainan
 10. exit
-   Untuk keluar dari permainan""")
+   Untuk keluar dari permainan\n""")
       elif role == 'roro_jonggrang':
         print("""
 =========== HELP ===========
@@ -44,7 +44,7 @@ def help():
 4. save
    Untuk menyimpan data permainan
 5. exit
-   Untuk keluar dari permainan""")
+   Untuk keluar dari permainan\n""")
       elif role == 'Pengumpul':
          print("""
 =========== HELP ===========
@@ -55,7 +55,7 @@ def help():
 3. save
    Untuk menyimpan data permainan
 4. exit
-   Untuk keluar dari permainan""")
+   Untuk keluar dari permainan\n""")
       else : # role = Pembangun
          print("""
 =========== HELP ===========
@@ -66,4 +66,4 @@ def help():
 3. save
    Untuk menyimpan data permainan
 4. exit
-   Untuk keluar dari permainan""")  
+   Untuk keluar dari permainan\n""")  

@@ -1,8 +1,6 @@
 from function import *
-from database import *
 
-def ubahjin():
-    global role
+def ubahjin(role, user):
     if role != 'bandung_bondowoso':
         print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
     else:

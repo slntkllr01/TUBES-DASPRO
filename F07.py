@@ -1,15 +1,13 @@
 from function import *
-from database import *
-from csvfunction import *
+from Bonus import *
 
-def kumpul():
-    global role
+def kumpul(role, bb):
     if role != 'Pengumpul':
         print("Maaf, Command ini hanya bisa diakses oleh Jin Pengumpul!")
     else:
-        pasir = RandomNumber(0, 5, 1344567543)
-        batu = RandomNumber(0, 5, 4455224424)
-        air = RandomNumber(0, 5, 8765432344)
+        pasir = lcg(0, 5, 1344567543)
+        batu = lcg(0, 5, 4455224424)
+        air = lcg(0, 5, 8765432344)
 
         bb[1][2] = int(bb[1][2]); bb[1][2] += pasir
         bb[2][2] = int(bb[2][2]); bb[2][2] += batu

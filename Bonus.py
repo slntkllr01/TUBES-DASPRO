@@ -9,7 +9,7 @@ def randomseed(x):
 
     return seed
     
-def myrandom(min: int ,max: int ,x: int) -> int : 
+def lcg(min: int ,max: int ,x: int) -> int : 
     seed = randomseed(x)
     a = 1662533
     c = 1283463648
@@ -18,5 +18,3 @@ def myrandom(min: int ,max: int ,x: int) -> int :
     hasil = min + int((max-min+1) * (r/(m+1)))
 
     return hasil
-
-print(myrandom(0,5,1787654))
