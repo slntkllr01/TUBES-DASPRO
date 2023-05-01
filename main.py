@@ -23,7 +23,7 @@ def main_program():
     if command == "login":
         loginstatus, username, password, role = login(user)
         if loginstatus:
-            main()
+            main_menu()
         else:
             main_program()
     elif command == "help":
@@ -39,68 +39,61 @@ def main_program():
 candi, bb, user = load(user, bahan_bangunan, candi)
 
 # Menu yang bisa dipanggil bondowoso (rekursif)
-def main():
+def main_menu():
     command = input(">>> ")
     if command == "help":
         role_help(loginstatus, role)
-        main()
+        main_menu()
     elif command == "exit":
         exit(user, bb, candi)
     elif command == "summonjin":
         summonjin(role, user, candi)
-        main()
+        main_menu()
     elif command == "hapusjin":
-        print(hapusjin(role, user, candi, stack))
-        main()
+        hapusjin(role, user, candi)
+        main_menu()
     elif command == "ubahjin":
         ubahjin(role, user)
-        main()
+        main_menu()
     elif command == "kumpul":
         kumpul(role, bb)
-        main()
+        main_menu()
     elif command == "bangun":
         bangun(role, username, user, bb, candi)
-        main()
+        main_menu()
     elif command == "batchkumpul":
         batchkumpul(user, bb, role)
-        main()
+        main_menu()
     elif command == "batchbangun":
         batchbangun(user, candi, bb, role)
-        main()
+        main_menu()
     elif command == "laporanjin":
         laporanjin(role, bb, user, candi)
-        main()
+        main_menu()
     elif command == "laporancandi":
         laporancandi(candi, role)
-        main()
+        main_menu()
     elif command == "hancurkancandi":
         hancurkancandi(role, candi)
-        main()
-    elif command == "undo":
-        if role == "bandung_bondowoso":
-            undo(user, candi, stack)
-            main()
-        else:
-            print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")  
-            main()  
+        main_menu()
     elif command == "ayamberkokok":
         ayamberkokok(role, candi)
         if role == 'roro_jonggrang':
             return
         else:
-            main()
+            main_menu()
     elif command == "save":
         save(user, bb, candi)
-        main()
+        main_menu()
     elif command == "logout":
         logout(loginstatus, username, password, role)
         main_program()
     elif command == "login":
         print("\nLogin gagal!\nAnda telah login dengan username " + str(username) + ", silahkan lakukan “logout” sebelum melakukan login kembali.\n")
-        main()
+        main_menu()
     else:
         print("Maaf, Command tidak terdaftar!")
-        main()
+        main_menu()
 
 # Menjalankan Main Program
 main_program()

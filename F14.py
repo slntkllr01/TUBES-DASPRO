@@ -8,7 +8,7 @@ def save(user, bb, candi):
         with open(file, "w") as f:
             f.write(data)
 
-    directory = input("Masukkan nama folder penyimpanan: ")
+    directory = input("\nMasukkan nama folder penyimpanan: ")
     
     if not os.path.exists('./save'):
         os.mkdir('./save')
@@ -26,7 +26,7 @@ def save(user, bb, candi):
         print()
         print("Membuat folder ./save/" + str(directory), "...")
         print()
-        print("Berhasil menyimpan data di folder ./save/" + str(directory))
+        print("Berhasil menyimpan data di folder ./save/" + str(directory) + "\n")
     else:
         print()
         print("Saving...")
@@ -35,6 +35,6 @@ def save(user, bb, candi):
         save_data(os.path.join(directory, "candi.csv"), candi)
 
         print()
-        print("Berhasil menyimpan data di folder ./save/" + str(directory))
+        print("Berhasil menyimpan data di folder ./save/" + str(directory) + "\n")
 
     os.chdir('../') 

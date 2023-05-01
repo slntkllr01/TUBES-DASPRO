@@ -16,8 +16,9 @@ def load(user, bahan_bangunan, candi):
     args = parser.parse_args()
 
     if args.nama_folder == "Tidak ada nama folder yang diberikan!":
-        print("Tidak ada nama folder yang diberikan!")
+        print("\nTidak ada nama folder yang diberikan!")
         parser.print_usage()
+        print()
         sys.exit()
 
     folder_path = os.path.join("save", args.nama_folder)
@@ -34,7 +35,8 @@ def load(user, bahan_bangunan, candi):
         user = add_to_database(user, user_csv)
         return candi, bb, user
     else:
-        print("Folder", args.nama_folder, "tidak ditemukan pada sistem")
+        print("\nFolder", args.nama_folder, "tidak ditemukan pada sistem")
         parser.print_usage()
+        print()
         sys.exit()
 

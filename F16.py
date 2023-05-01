@@ -4,7 +4,7 @@ from F14 import save
 def exit(user, bb, candi):
     validasi  = False
     while not validasi: # Dalam artian, while True
-        choice = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
+        choice = input("\nApakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
         if choice == "y" or choice == 'Y':
             save(user, bb, candi)
             sys.exit()

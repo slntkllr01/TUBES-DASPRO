@@ -1,8 +1,6 @@
 from function import *
 
-def hapusjin(role, user, candi, stack):
-    if not stack:
-        stack = []
+def hapusjin(role, user, candi):
     if role != "bandung_bondowoso":
         print("Anda tidak memiliki wewenang untuk menghapus jin!")
         return
@@ -24,83 +22,32 @@ def hapusjin(role, user, candi, stack):
                 if choice == 'Y' or choice == 'y':
                     # hapus candi jika jin pembangun
                     if user[i][2] == "Pembangun":
-                        candi, stack = hapus_candi(jin_username, user, candi, stack)
-                    # Simpan array yang dihapus ke dalam stack sebelum dihapus
-                    stack = arr_append(stack, ("hapus", (user[i], candi[i])))
-                    # Simpan array yang digeser ke dalam stack sebelum digeser
+                        candi = hapus_candi(jin_username, user, candi)
                     user[i] = []
-                    stack = arr_append(stack, ("geser", (user, candi)))
                     user = geser_array(user, i)
                     print()
                     database_tabel = filter_array(user)
                     tabel_maker(database_tabel)
-                    print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.")
-                    return stack
+                    print("\nSelamat! Jin telah berhasil dihapus dari alam gaib.\n")
                 else: # Pilih N/n
+                    print()
                     break
             else:
                 i += 1
         if not jin_found: # jika jin dengan username tersebut tidak ditemukan
-            print("Maaf, Tidak ada jin dengan username tersebut.")
+            print("Maaf, Tidak ada jin dengan username tersebut.\n")
 
-def hapus_candi(username, user, candi, stack):
+def hapus_candi(username, user, candi):
     
     # Loop melalui seluruh candi dan hapus semua candi dengan username yang sesuai
     i = 0
     while i < (array_length(candi) - array_kosong_count(candi)):
         if candi[i] and candi[i][1] == username:
-            # Simpan array yang dihapus ke dalam stack sebelum dihapus
-            stack = arr_append(stack, ("hapus_candi", (candi[i])))
             candi[i] = []
             candi = geser_array(candi, i)
         else:
             i += 1
-    return candi, stack
-
-# B04 - Undo
-
-def undo(user, candi, stack):
-    # ambil perubahan terakhir dari stack
-    if not stack:
-        print("Tidak ada perubahan yang dapat di-undo.")
-        return
-    else:
-        stack_last_idx = len(stack)-1
-        perubahan_terakhir = stack[stack_last_idx]
-        stack = stack[:stack_last_idx]
-
-    # undo perubahan
-    if perubahan_terakhir[0] == 'hapus_jin':
-        # hapus jin dari user
-        jin = perubahan_terakhir[1][0]
-        index_jin = 0
-        while index_jin < len(user):
-            if user[index_jin][0] == jin[0]:
-                user[index_jin] = jin
-                break
-            index_jin += 1
-
-        # hapus candi yang berkaitan
-        candi_jin = perubahan_terakhir[1][1]
-        index_candi = 0
-        while index_candi < len(candi):
-            if candi[index_candi][0] == candi_jin[0]:
-                candi[index_candi] = candi_jin
-                break
-            index_candi += 1
-
-        print("Perubahan pada penghapusan jin telah di-undo.")
-    elif perubahan_terakhir[0] == 'hapus_candi':
-        # hapus candi dari candi
-        candi_item = perubahan_terakhir[1][0]
-        index_candi = 0
-        while index_candi < len(candi):
-            if candi[index_candi][0] == candi_item[0]:
-                candi[index_candi] = candi_item
-                break
-            index_candi += 1
-
-        print("Perubahan pada penghapusan candi telah di-undo.")
+    return candi
 
 def cari_index(parameter, array):
     for i in range(array_length(array)):

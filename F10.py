@@ -40,6 +40,7 @@ def laporancandi(candi, role):
         if length_candi == 1:
             print("ID Candi Termahal: -")
             print("ID Candi Termurah: -")
+            print()
         else:
             print("ID Candi Termahal:", id_termahal, "(Rp " + formatting_harga(harga_termahal) + ")")
             print("ID Candi Termurah:", id_termurah, "(Rp " + formatting_harga(harga_termurah) + ")", "\n")
@@ -70,7 +71,3 @@ def formatting_harga(nominal : int) -> str:
         new_str += digit
 
     return new_str
-
-def hargacandi(pasir, batu, air):
-    harga = 1000 * pasir + 15000 * batu + 7500 * air
-    return harga

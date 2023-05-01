@@ -14,22 +14,24 @@ def ubahjin(role, user):
             if username_jin == user[i][0]:
                 if user[i][2] == 'Pengumpul':
                     konfirmasi = input(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pembangun” (Y/N)? ")
+                    print()
                 else: # Role : Pembangun
                     konfirmasi = input(f"Jin ini bertipe {user[i][2]}. Yakin ingin mengubah ke tipe “Pengumpul” (Y/N)? ")
+                    print()
 
                 if konfirmasi == 'y' or konfirmasi == 'Y':
                     user[i][2] = 'Pembangun' if user[i][2] == 'Pengumpul' else 'Pengumpul'
                     print()
                     database_tabel = filter_array(user)
                     tabel_maker(database_tabel)
-                    print("\nJin telah berhasil diubah.")
+                    print("\nJin telah berhasil diubah.\n")
                     found = True
                     break
                 else:
                     found = True 
                     break
         if not found:
-            print("\nTidak ada jin dengan username tersebut.")     
+            print("\nTidak ada jin dengan username tersebut.\n")     
 
 def filter_array(arr):
     # Inisialisasi array hasil dengan header

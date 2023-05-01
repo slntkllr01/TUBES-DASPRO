@@ -10,4 +10,4 @@ Repository ini berisi file-file yang berkaitan dengan pemenuhan tugas besar mata
 | Yoga Putra Pratama | 19622090 |
 | Raffael Boymian Siahaan | 19622108 |
 
-Penjabaran detail mengenai tugas besar ini akan dijelaskan setelah tugas besar ini selesai. Doakan ya guyss program ini dapat berjalan sempurna hehe
+cara run program ini : open main.py lalu jalankan 'python main.py <nama folder>' di terminal

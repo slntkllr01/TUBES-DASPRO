@@ -13,6 +13,3 @@ role = ''
 
 # Inisialisasi Status Login
 loginstatus = False
-
-# inisialisasi stack (Recycle bin)
-stack = []

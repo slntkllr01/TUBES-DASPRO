@@ -46,25 +46,7 @@ def my_split(string , delimit):
     arr = arr_append(temp_arr, word)
     return arr 
 
-# B01 - Random Number Generator
-
-def randomseed(x):
-    now = time.perf_counter()
-    ProcessId = os.getpid()
-    seed = int(now*ProcessId*x)
-
-    return seed
-    
-def RandomNumber(min: int ,max: int ,x: int) -> int : 
-    seed = randomseed(x)
-    a = 1662533
-    c = 1283463648
-    m = 2**32
-    r = (a*seed+c) % m
-    hasil = min + int((max-min+1) * (r/(m+1)))
-
-    return hasil
-
+# Fungsi untuk menambahkan List ke Database
 def add_to_database(list_awal : list, list_tambahan : list, indeks: int = 0) -> list:
     if indeks == array_length(list_tambahan):
         return list_awal
@@ -75,26 +57,28 @@ def add_to_database(list_awal : list, list_tambahan : list, indeks: int = 0) -> 
                 break
         return add_to_database(list_awal, list_tambahan, indeks+1)
 
-# implementasi pop
+# Implementasi fungsi pop
 def delete_elmt(arr, indeks):
-    if len(arr) == 0:
+    if array_length(arr) == 0:
         return None
-    last_index = len(arr) - 1
+    last_index = array_length(arr) - 1
     last_element = arr[last_index]
     new_arr = []
-    for i in range(len(arr)):
+    for i in range(array_length(arr)):
         if i != indeks:
             new_arr = arr_append(new_arr, arr[i])
     arr = new_arr
     return arr
 
+# Fungsi untuk Menghitung Array Kosong
 def array_kosong_count(arr: list):
     count = 0
-    for i in range (len(arr)):
-        if len(arr[i]) == 0:
+    for i in range (array_length(arr)):
+        if array_length(arr[i]) == 0:
             count += 1
     return count
 
+# Fungsi untuk Menggeser Array
 def geser_array(arr, index_jin):
     # menghapus elemen yang dihapus dengan menggeser seluruh elemen setelahnya ke kiri
     for i in range(index_jin, array_length(arr)-1):
@@ -102,17 +86,18 @@ def geser_array(arr, index_jin):
     arr[array_length(arr)-1] = []
     
     # menggeser elemen yang kosong ke kanan
-    for i in range(len(arr)):
+    for i in range(array_length(arr)):
         if not arr[i]:
             j = i+1
-            while j < len(arr) and not arr[j]:
+            while j < array_length(arr) and not arr[j]:
                 j += 1
-            if j == len(arr):
+            if j == array_length(arr):
                 break
             arr[i] = arr[j]
             arr[j] = []  
     return arr
 
+# Fungsi untuk membuat tabel
 def tabel_maker(arr):
     # Mengecek apakah ada baris kosong di akhir array
     arr_len = len(arr)

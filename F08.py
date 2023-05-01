@@ -12,7 +12,7 @@ def batchkumpul(user, bb, role):
 
     # Melakukan Validasi role
     if role != 'bandung_bondowoso':
-        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
+        print("\nMaaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!\n")
         return
     
     # Inisialisasi Jumlah Pasir, Batu, Air yang terkumpul untuk satu jin
@@ -36,22 +36,22 @@ def batchkumpul(user, bb, role):
     bb[3][2] = int(bb[3][2]); bb[3][2] += total_air
 
     if pengumpul_count == 0:
-        print("Kumpul gagal. Anda tidak punya jin pengumpul. Silahkan summon terlebih dahulu.")
+        print("\nKumpul gagal. Anda tidak punya jin pengumpul. Silahkan summon terlebih dahulu.\n")
         return
 
-    print("Mengerahkan", pengumpul_count, "jin untuk mengumpulkan bahan.")
-    print("Jin menemukan total", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")   
+    print("\nMengerahkan", pengumpul_count, "jin untuk mengumpulkan bahan.")
+    print("Jin menemukan total", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.\n")   
 
 def batchbangun(user, candi, bb, role):
     # Melakukan Validasi role
     if role != 'bandung_bondowoso':
-        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
+        print("\nMaaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!\n")
         return
     
     pembangun_count = role_count(user, "Pembangun")
 
     if pembangun_count == 0:
-        print("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
+        print("\nBangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.\n")
         return
     else:
         # Inisialisasi Total Jumlah Pasir, Batu, Air yang dibutuhkan
@@ -74,8 +74,8 @@ def batchbangun(user, candi, bb, role):
             riwayat_total[i] = [pasir, batu, air]
 
         if total_pasir <= int(bb[1][2]) and total_batu <= int(bb[2][2]) and total_air <= int(bb[3][2]):
-            print("Mengerahkan", pembangun_count, "jin untuk membangun candi dengan total bahan", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")
-            print("Jin berhasil membangun total", pembangun_count, "candi.")
+            print("\nMengerahkan", pembangun_count, "jin untuk membangun candi dengan total bahan", total_pasir, "pasir,", total_batu, "batu, dan", total_air, "air.")
+            print("Jin berhasil membangun total", pembangun_count, "candi.\n")
 
             # Meng-update sisa bahan bangunan ke database bahan bangunan
             bb[1][2] = int(bb[1][2]); bb[1][2] -= total_pasir
@@ -90,7 +90,7 @@ def batchbangun(user, candi, bb, role):
             pasir_needed = abs(int(bb[1][2]) - total_pasir)
             batu_needed = abs(int(bb[2][2]) - total_batu)
             air_needed = abs(int(bb[3][2]) - total_air)
-            print("Bangun gagal. Kurang", pasir_needed, "pasir,", batu_needed, "batu, dan", air_needed, "air.")
+            print("\nBangun gagal. Kurang", pasir_needed, "pasir,", batu_needed, "batu, dan", air_needed, "air.\n")
 
 def database_username_jin(arr, role):
     result = []  # list kosong untuk menampung hasil

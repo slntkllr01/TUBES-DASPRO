@@ -12,8 +12,8 @@ def ayamberkokok(role, candi):
 
         if jumlah_candi < 100:
             print("\nSelamat, Roro Jonggrang memenangkan permainan!")
-            print("Roro jonggrang dikutuk menjadi candi.")
+            print("Roro jonggrang dikutuk menjadi candi.\n")
         else:
-            print("Yah, Bandung Bondowoso memenangkan permainan")
+            print("Yah, Bandung Bondowoso memenangkan permainan\n")
     else:
         print("\nMaaf, Command ini hanya bisa diakses oleh Roro Jonggrang!\n")

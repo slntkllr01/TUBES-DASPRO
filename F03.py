@@ -7,12 +7,12 @@ def summonjin(role, user, candi):
             print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu.")
             return
         
-        print("Jenis jin yang dapat dipanggil:")
+        print("\nJenis jin yang dapat dipanggil:")
         print(" (1) Pengumpul - Bertugas mengumpulkan bahan bangunan")
         print(" (2) Pembangun - bertugas membangun candi")
 
         while True:
-            jenis_jin = int(input("Masukkan nomor jenis jin yang dipanggil: "))
+            jenis_jin = int(input("\nMasukkan nomor jenis jin yang dipanggil: "))
 
             if jenis_jin == 1:
                 print("\nMemilih jin “Pengumpul”.\n")
@@ -23,9 +23,9 @@ def summonjin(role, user, candi):
                 validasi_jin("Pembangun", user)
                 break
             else:
-                print("Sorry banget, tapi lu siapa?")
+                print("\nTidak ada jenis jin bernomor " + str(jenis_jin) + "!")
     else:
-        print("Maaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!")
+        print("\nMaaf, Command ini hanya bisa diakses oleh Bandung Bondowoso!\n")
 
 def validasi_username(variable, user):
     valid = True
@@ -50,10 +50,10 @@ def validasi_jin(role, user):
                 continue
             else:
                 user = add_to_database(user, [[username_jin, password_jin, role]])
-                print("Mengumpulkan sesajen...")
+                print("\nMengumpulkan sesajen...")
                 print("Menyerahkan sesajen...")
                 print("Membacakan mantra...")
-                print("\nJin", username_jin, "berhasil dipanggil!")
+                print("\nJin", username_jin, "berhasil dipanggil!\n")
                 return
 
 

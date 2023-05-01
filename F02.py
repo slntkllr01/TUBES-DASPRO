@@ -1,4 +1,5 @@
-def logout(loginstatus, username, password, role):
+def logout(loginstatus: bool, username: str, password: str, role: str):
+  # Jika status login adalah True, akan logout dengan mengosongkan username, password, dan role
   if loginstatus == True:
     loginstatus = False
     username = ""
@@ -6,10 +7,5 @@ def logout(loginstatus, username, password, role):
     role = ""
     print()
   else:
-    print("Logout gagal!\nAnda belum login, silakan login terlebih dahulu sebelum melakukan logout") 
-    
-  
-    
-  
-
-
+    # Jika status login adalah False, akan ditampilkan pesan error
+    print("\nLogout gagal!\nAnda belum login, silakan login terlebih dahulu sebelum melakukan logout\n") 
