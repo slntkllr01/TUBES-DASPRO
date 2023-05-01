@@ -14,19 +14,23 @@ from F13 import *
 from F14 import *
 from F15 import *
 from F16 import *
+from database import *
+
+# Menjalankan fungsi Load
+candi, bb, user = load(user, bahan_bangunan, candi)
 
 # Fungsi untuk memanggil main sebelum login (rekursif)
 def main_program():
     global loginstatus, role, username, password
     command = input(">>> ")
     if command == "login":
-        loginstatus, username, password, role = login()
+        loginstatus, username, password, role = login(user)
         if loginstatus:
-            main(role)
+            main()
         else:
             main_program()
     elif command == "help":
-        help()
+        role_help(loginstatus, role)
         main_program()
     elif command == "exit":
         exit()
@@ -35,123 +39,57 @@ def main_program():
         main_program()
 
 # Menu yang bisa dipanggil bondowoso (rekursif)
-def main_bondowoso():
+def main():
     command = input(">>> ")
     if command == "help":
         role_help(loginstatus, role)
-        main_bondowoso()
+        main()
     elif command == "exit":
         exit()
     elif command == "summonjin":
-        summonjin()
-        main_bondowoso()
+        summonjin(role, user, candi)
+        main()
     elif command == "hapusjin":
-        hapusjin()
-        main_bondowoso()
+        hapusjin(role, user, candi)
+        main()
     elif command == "ubahjin":
-        ubahjin()
-        main_bondowoso()
-    elif command == "batchkumpul":
-        kumpul()
-        main_bondowoso()
-    elif command == "batchbangun":
-        bangun()
-        main_bondowoso()
-    elif command == "laporanjin":
-        laporanjin()
-        main_bondowoso()
-    elif command == "laporancandi":
-        laporancandi()
-        main_bondowoso()
-    elif command == "save":
-        save()
-        main_bondowoso()
-    elif command == "logout":
-        logout()
-        main_program()
-    else:
-        print("Maaf, Command tidak terdaftar!")
-        main_bondowoso()
-
-# Menu yang bisa dipanggil roro (rekursif)
-def main_roro():
-    command = input(">>> ")
-    if command == "help":
-        help()  
-        main_roro()
-    elif command == "exit":
-        exit()
-    elif command == "hancurkancandi":
-        hancurkancandi()
-        main_roro()
-    elif command == "ayamberkokok":
-        ayamberkokok()
-        main_roro()
-    elif command == "save":
-        save()
-        main_roro()
-    elif command == "logout":
-        logout()
-        main_program()
-    else:
-        print("Maaf, Command tidak terdaftar!")
-        main_bondowoso()
-
-
-# Menu yang bisa dipanggil pembangun (rekursif)
-def main_pembangun():
-    command = input(">>> ")
-    if command == "help":
-        help()
-        main_pembangun()
-    elif command == "exit":
-        exit()
-    elif command == "bangun":
-        bangun()
-        main_pembangun()
-    elif command == "save":
-        save()
-        main_pembangun()
-    elif command == "logout":
-        logout()
-        main_program()
-    else:
-        print("Maaf, Command tidak terdaftar!")
-        main_pembangun()
-
-# Menu yang bisa dipanggil pengumpul (rekursif)
-def main_pengumpul():
-    command = input(">>> ")
-    if command == "help":
-        help()
-        main_pengumpul()
-    elif command == "exit":
-        exit()
+        ubahjin(role, user)
+        main()
     elif command == "kumpul":
-        kumpul()
-        main_pengumpul()
+        kumpul(role, bb)
+        main()
+    elif command == "bangun":
+        bangun(role, username, user, bb, candi)
+        main()
+    elif command == "batchkumpul":
+        batchkumpul(user, bb, role)
+        main()
+    elif command == "batchbangun":
+        batchbangun(user, candi, bb, role)
+        main()
+    elif command == "laporanjin":
+        laporanjin(role, bb, user, candi)
+        main()
+    elif command == "laporancandi":
+        laporancandi(candi, role)
+        main()
+    elif command == "hancurkancandi":
+        hancurkancandi(role, candi)
+        main()
+    elif command == "ayamberkokok":
+        ayamberkokok(role, candi)
+        if role == 'roro_jonggrang':
+            return
+        else:
+            main()
     elif command == "save":
         save()
-        main_pengumpul()
+        main()
     elif command == "logout":
-        logout()
+        logout(loginstatus, username, password, role)
         main_program()
     else:
         print("Maaf, Command tidak terdaftar!")
-        main_pengumpul()
-
-# Fungsi untuk main (menu utama)
-def main(role):
-    if role == "Pembangun":
-        main_pembangun()
-    elif role == "Pengumpul":
-        main_pengumpul()
-    elif role == "roro_jonggrang":
-        main_roro()
-    elif role == "bandung_bondowoso":
-        main_bondowoso()
+        main()
 
 main_program()
-
-
-

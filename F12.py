@@ -16,4 +16,4 @@ def ayamberkokok(role, candi):
         else:
             print("Yah, Bandung Bondowoso memenangkan permainan")
     else:
-        print("Maaf, Command ini hanya bisa diakses oleh Roro Jonggrang!")
+        print("\nMaaf, Command ini hanya bisa diakses oleh Roro Jonggrang!\n")

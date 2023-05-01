@@ -35,15 +35,14 @@ def laporancandi(candi, role):
         print("\nTotal Candi:", total_candi)
         print("Total Pasir yang digunakan:", total_pasir)
         print("Total Batu yang digunakan:", total_batu)
-        print("Total Air yang digunakan:", total_air, "\n")
+        print("Total Air yang digunakan:", total_air)
 
         if length_candi == 1:
             print("ID Candi Termahal: -")
             print("ID Candi Termurah: -")
         else:
             print("ID Candi Termahal:", id_termahal, "(Rp " + formatting_harga(harga_termahal) + ")")
-            print("ID Candi Termurah:", id_termurah, "(Rp " + formatting_harga(harga_termurah) + ")")
-        
+            print("ID Candi Termurah:", id_termurah, "(Rp " + formatting_harga(harga_termurah) + ")", "\n")
     else:
         print("Laporan candi hanya dapat diakses oleh akun Bandung Bondowoso.")    
 

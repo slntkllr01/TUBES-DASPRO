@@ -85,7 +85,7 @@ def batchbangun(user, candi, bb, role):
             # Meng-update candi yang telah dibangun ke database candi
             database_jin = database_username_jin(user, 'Pembangun')
             for i in range (pembangun_count):
-                candi = add_to_database(candi, [[str(array_length(candi)+i), database_jin[i], str(riwayat_total[i][0]), str(riwayat_total[i][1]), str(riwayat_total[i][2])]])
+                candi = add_to_database(candi, [[str(array_length(candi)-array_kosong_count(candi)), database_jin[i], str(riwayat_total[i][0]), str(riwayat_total[i][1]), str(riwayat_total[i][2])]])
         else:
             pasir_needed = abs(int(bb[1][2]) - total_pasir)
             batu_needed = abs(int(bb[2][2]) - total_batu)

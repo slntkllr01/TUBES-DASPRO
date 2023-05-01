@@ -3,9 +3,7 @@ from function import *
 from database import *
 import time
 
-arr = csv_to_array('user.csv')
-
-def login() :
+def login(arr) :
 
   # Program Login ini memiliki jumlah attempt maksimal sebanyak 3 kali
   max_attempts = 3
@@ -16,7 +14,7 @@ def login() :
     user_username = input("Masukkan Username: ")
     user_password = input("Masukkan Password: ")
 
-    for i in range(array_length(arr)):
+    for i in range(array_length(arr) - array_kosong_count(arr)):
       if arr[i][0] == user_username:
         if arr[i][1] == user_password:
           print("\nSelamat datang,", user_username, "!")

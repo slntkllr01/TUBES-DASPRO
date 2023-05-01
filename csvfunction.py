@@ -1,9 +1,8 @@
 from function import *
 
 # Baca File CSV
-def csv_to_array(file_name):
-  with open(file_name, 'r') as file:
-    data = file.read()
+def csv_to_array(file):
+  data = file.read()
 
   # simpan CSV di array
   arr = my_split(data, '\n')
